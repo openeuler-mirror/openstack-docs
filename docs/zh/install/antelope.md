@@ -2,7 +2,7 @@
 
 [TOC]
 
-本文档是 openEuler OpenStack SIG 编写的基于 |openEuler 24.03 LTS SP1 的 OpenStack 部署指南，内容由 SIG 贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请[联系](https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)SIG维护人员，或者直接[提交issue](https://gitee.com/openeuler/openstack/issues)
+本文档是 openEuler OpenStack SIG 编写的基于 |openEuler 25.03 的 OpenStack 部署指南，内容由 SIG 贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请[联系](https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)SIG维护人员，或者直接[提交issue](https://gitee.com/openeuler/openstack/issues)
 
 **约定**
 
@@ -42,7 +42,7 @@ OpenStack SIG 提供了多种基于 openEuler 部署 OpenStack 的方法，以�
 
 本文档基于OpenStack经典的三节点环境进行部署，三个节点分别是控制节点(Controller)、计算节点(Compute)、存储节点(Storage)，其中存储节点一般只部署存储服务，在资源有限的情况下，可以不单独部署该节点，把存储节点上的服务部署到计算节点即可。
 
-首先准备三个|openEuler 24.03 LTS SP1环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像](https://repo.openeuler.org/openEuler-24.03-LTS-SP1/ISO/)、[qcow2镜像](https://repo.openeuler.org/openEuler-24.03-LTS-SP1/virtual_machine_img/)。
+首先准备三个|openEuler 25.03环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像]<https://repo.openeuler.org/openEuler-24.03-LTS-SP1/ISO/>、[qcow2镜像]<https://repo.openeuler.org/openEuler-24.03-LTS-SP1/virtual_machine_img/>。
 
 下面的安装按照如下拓扑进行：
 
@@ -62,7 +62,7 @@ storage：   192.168.0.4
 
 在正式部署之前，需要对每个节点做如下配置和检查：
 
-1. 配置 |openEuler 24.03 LTS SP1 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack
+1. 配置 |openEuler 25.03 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack
 
     ```shell
     yum update
@@ -3606,7 +3606,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息，AK/SK是用户的华为云登录密钥，其他配置保持默认即可（默认使用新加坡region），需要提前在云上创建对应的资源，包括：
 
     - 一个安全组，名字默认是`oos`
-    - 一个openEuler镜像，名称格式是openEuler-%(release)s-%(arch)s，例如`openEuler-24.03-sp1-arm64`
+    - 一个openEuler镜像，名称格式是openEuler-%(release)s-%(arch)s，例如`openEuler-25.03-arm64`
     - 一个VPC，名称是`oos_vpc`
     - 该VPC下面两个子网，名称是`oos_subnet1`、`oos_subnet2`
 
@@ -3667,12 +3667,12 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     | swift_storage_devices  | swift使用的卷设备名 |
     | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器(只在openEuler LTS上支持) |
 
-4. 华为云上面创建一台|openEuler 24.03 LTS SP1的x86_64虚拟机，用于部署`all in one` 的 OpenStack
+4. 华为云上面创建一台|openEuler 25.03的x86_64虚拟机，用于部署`all in one` 的 OpenStack
 
     ```shell
     # sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
     dnf install sshpass
-    oos env create -r 24.03-lts-sp1 -f small -a x86 -n test-oos all_in_one
+    oos env create -r 25.03 -f small -a x86 -n test-oos all_in_one
     ```
 
     具体的参数可以使用`oos env create --help`命令查看
@@ -3714,7 +3714,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 ```shell
 # sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
 dnf install sshpass
-oos env manage -r 24.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
+oos env manage -r 25.03 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
 ```
 
 替换`TARGET_MACHINE_IP`为目标机ip、`TARGET_MACHINE_PASSWD`为目标机密码。具体的参数可以使用`oos env manage --help`命令查看。

@@ -33,9 +33,11 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 | openEuler 22.03 LTS SP1 |        |       |   ●   |        |          |    ●    |      |      |          |
 | openEuler 22.03 LTS SP2 |        |       |   ●   |        |          |    ●    |      |      |          |
 | openEuler 22.03 LTS SP3 |        |       |   ●   |        |          |    ●    |      |      |          |
-| openEuler 22.03 LTS SP4 |        |       |   ○   |        |          |    ○    |      |      |          |
+| openEuler 22.03 LTS SP4 |        |       |   ●   |        |          |    ●    |      |      |          |
 | openEuler 22.09         |        |       |       |        |          |         |      |   ●  |     ●    |
 | openEuler 24.03 LTS     |        |       |       |        |          |    ●    |      |      |     ●    |
+| openEuler 24.03 LTS SP1 |        |       |       |        |          |    ●    |      |      |     ●    |
+| openEuler 25.03         |        |       |       |        |          |         |      |      |     ●    |
 
 |            | Queens | Rocky | Train | Victoria | Wallaby | Yoga | Antelope |
 |:---------: |:------:|:-----:|:-----:|:--------:|:-------:|:----:|:--------:|
