@@ -312,7 +312,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 #### 安装缓存服务
 
-消息队列安装在控制节点，这里推荐使用Memcached。
+缓存服务安装在控制节点，这里推荐使用Memcached。
 
 1. 安装软件包
 
