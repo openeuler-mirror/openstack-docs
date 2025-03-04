@@ -1,7 +1,10 @@
 ---
-label: 'OpenStack SIG'
-href: './index.md'
+label: 'OpenStack 用户手册'
+ismanual: 'Y'
+descripton: '一个开源的云计算管理平台项目'
 children:
+  - label: 'OpenStack SIG'
+    href: './index.md'
   - label: '贡献指导'
     href: './contribute/rpm-packaging-reference.md'
     children:
@@ -24,4 +27,3 @@ children:
       - label: '安全指南'
         href: './security/security-guide.md'
 ---
-
