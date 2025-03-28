@@ -1,6 +1,6 @@
 label: OpenStack 用户手册
 isManual: true
-descripton: 一个开源的云计算管理平台项目
+description: 一个开源的云计算管理平台项目
 sections:
   - label: OpenStack SIG
     href: ./index.md
