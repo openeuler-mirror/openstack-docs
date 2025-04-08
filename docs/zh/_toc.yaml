@@ -5,7 +5,6 @@ sections:
   - label: OpenStack SIG
     href: ./index.md
   - label: 贡献指导
-    href: ./contribute/rpm-packaging-reference.md
     sections:
       - label: RPM开发流程
         href: ./contribute/rpm-packaging-reference.md
