@@ -6,13 +6,13 @@
 
 ## 安装步骤
 
-准备一个openEuler环境, 20.03 LTS SP2[虚拟机镜像地址](https://repo.openeuler.org/openEuler-20.03-LTS-SP2/virtual_machine_img/), master[虚拟机镜像地址](http://121.36.84.172/dailybuild/openEuler-Mainline/)
+准备一个openEuler环境，20.03 LTS SP2[虚拟机镜像地址](https://repo.openeuler.org/openEuler-20.03-LTS-SP2/virtual_machine_img/)，master[虚拟机镜像地址](http://121.36.84.172/dailybuild/openEuler-Mainline/)
 
 1. 配置yum源
 
     **openEuler 20.03 LTS SP2**：
 
-    openEuler官方源中缺少了一些OpenStack需要的RPM包，因此需要先配上OpenStack SIG在oepkg中准备好的RPM源
+    openEuler官方源中缺少了一些OpenStack需要的RPM包，因此需要先配上OpenStack SIG在oepkg中准备好的RPM源。
 
     ```shell
     vi /etc/yum.repos.d/openeuler.repo
@@ -24,9 +24,9 @@
     gpgcheck=0
     ```
 
-    **openEuler master**:
+    **openEuler master**：
 
-    使用master的RPM源:
+    使用master的RPM源：
 
     ```shell
     vi /etc/yum.repos.d/openeuler.repo
@@ -46,7 +46,7 @@
 
     **openEuler 20.03 LTS SP2**：
 
-    在一些版本的openEuler官方镜像的默认源中，EPOL-update的URL可能配置不正确，需要修改
+    在一些版本的openEuler官方镜像的默认源中，EPOL-update的URL可能配置不正确，需要修改。
 
     ```shell
     vi /etc/yum.repos.d/openEuler.repo
@@ -120,7 +120,7 @@
     sudo dnf install syslinux-nonlinux
     ```
 
-    **openEuler master的特殊配置**： 由于devstack还没有适配最新的openEuler，我们需要手动修复一些问题：
+    **openEuler master的特殊配置**：由于devstack还没有适配最新的openEuler，我们需要手动修复一些问题：
 
     1. 修改devstack源码
 
@@ -136,7 +136,7 @@
 
     2. 修改requirements源码
 
-        Yoga版keystone的依赖`setproctitle`的devstack默认版本不支持python3.10，需要升级，手动下载requirements项目并修改
+        Yoga版keystone的依赖`setproctitle`的devstack默认版本不支持python3.10，需要升级，手动下载requirements项目并修改。
 
         ```shell
         cd /opt/stack

@@ -429,6 +429,7 @@ Keystone是OpenStack提供的鉴权服务，是整个OpenStack的入口，提供
     配置 `ServerName` 项引用控制节点
 
     ***注意***
+
     **如果 `ServerName` 项不存在则需要创建**
 
 8. 启动Apache HTTP服务
@@ -492,14 +493,14 @@ Keystone是OpenStack提供的鉴权服务，是整个OpenStack的入口，提供
 
 11. 验证
 
-    - 取消临时环境变量OS_AUTH_URL和OS_PASSWORD：
+    - 取消临时环境变量OS_AUTH_URL和OS_PASSWORD
 
     ```shell
     source ~/.admin-openrc
     unset OS_AUTH_URL OS_PASSWORD
     ```
 
-    - 为admin用户请求token：
+    - 为admin用户请求token
 
     ```shell
     openstack --os-auth-url http://controller:5000/v3 \
@@ -507,7 +508,7 @@ Keystone是OpenStack提供的鉴权服务，是整个OpenStack的入口，提供
     --os-project-name admin --os-username admin token issue
     ```
 
-    - 为myuser用户请求token：
+    - 为myuser用户请求token
 
     ```shell
     openstack --os-auth-url http://controller:5000/v3 \
@@ -546,7 +547,7 @@ Glance是OpenStack提供的镜像服务，负责虚拟机、裸机镜像的上�
     source ~/.admin-openrc
     ```
 
-    - 创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到`GLANCE_PASS`的地方替换成该密码即可。
+    - 创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到`GLANCE_PASS`的地方替换成该密码即可
 
     ```shell
     openstack user create --domain default --password-prompt glance
@@ -554,19 +555,19 @@ Glance是OpenStack提供的镜像服务，负责虚拟机、裸机镜像的上�
     Repeat User Password:
     ```
 
-    - 添加glance用户到service project并指定admin角色：
+    - 添加glance用户到service project并指定admin角色
 
     ```shell
     openstack role add --project service --user glance admin
     ```
 
-    - 创建glance服务实体：
+    - 创建glance服务实体
 
     ```shell
     openstack service create --name glance --description "OpenStack Image" image
     ```
 
-    - 创建glance API服务：
+    - 创建glance API服务
 
     ```shell
     openstack endpoint create --region RegionOne image public http://controller:9292
@@ -1921,7 +1922,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
     用户也可自行使用json-rpc方式替换rabbitmq
     
-    - 配置ironic-api服务使用身份认证服务的凭证，替换**PUBLIC_IDENTITY_IP**为身份认证服务器的公共IP，替换**PRIVATE_IDENTITY_IP**为身份认证服务器的私有IP，替换     **IRONIC_PASS**为身份认证服务中**ironic**用户的密码，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码。：
+    - 配置ironic-api服务使用身份认证服务的凭证，替换**PUBLIC_IDENTITY_IP**为身份认证服务器的公共IP，替换**PRIVATE_IDENTITY_IP**为身份认证服务器的私有IP，替换     **IRONIC_PASS**为身份认证服务中**ironic**用户的密码，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码。
 
     ```ini
     [DEFAULT]

@@ -11,7 +11,7 @@ SIG 编包时，会以共享表格的形式，将需要处理的软件包整理�
 | pyrsistent| python-pyrsistent | sig-python-modules | 0.18.0 | 0.18.1 | | [] | 0.18.1 | Need Upgrade | [] | 13 |  |  |  |
 | ... | | | | | | | | | | | | | |
 
-“Project Name”列为软件项目名。“openEuler Repo”列为此项目在 openEuler gitee 上的仓库名，同时也是此项目在openEuler系统中的软件包名。所有 openEuler 的软件包仓库均存放于<https://gitee.com/src-openeuler之中。“SIG”列记录软件包归属于哪个> SIG。
+“Project Name”列为软件项目名。“openEuler Repo”列为此项目在 openEuler gitee 上的仓库名，同时也是此项目在openEuler系统中的软件包名。所有 openEuler 的软件包仓库均存放于<https://gitee.com/src-openeuler>之中。“SIG”列记录软件包归属于哪个 SIG。
 
 处理时首先查看“Status”列，该列表示软件包状态。软件包共有6种状态，开发者需要根据“Status”进行相应处理。
 
@@ -38,7 +38,7 @@ SIG 编包时，会以共享表格的形式，将需要处理的软件包整理�
 
 在 openEuler 社区提交贡献需要签署 [CLA](https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZvcGVuZXVsZXI=)。
 
-对于初次参与 openEuler 社区的开发者，可首先查看[openEuler 贡献攻略](https://www.openeuler.org/zh/community/contribution/)，概览整体贡献情况。
+对于初次参与 openEuler 社区的开发者，可首先查看[《openEuler 贡献攻略》](https://www.openeuler.org/zh/community/contribution/)，概览整体贡献情况。
 
 ### 环境准备
 
@@ -142,6 +142,6 @@ oos 自动生成的 spec 文件中，%check 部分默认为 `%{__python3} setup.
 
 ### 包名不一致问题
 
-小部分软件包可能会碰到，oos 自动生成的 spec 所使用的的包名与现有包名不一致。比如一个使用`-`,一个使用下划线`_`。此处以原本使用的包名为准，不修改原有包名。
+小部分软件包可能会碰到，oos 自动生成的 spec 所使用的的包名与现有包名不一致。比如一个使用`-`，一个使用下划线`_`。此处以原本使用的包名为准，不修改原有包名。
 
 作为临时的处理，开发者可以手动将 spec 文件相关地方改为原有包名。与此同时，oos 拥有 mapping 修正功能，开发者可以提交 issue，SIG 将在 oos 中进行修复。
