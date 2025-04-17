@@ -79,23 +79,23 @@ Note:
 
 Queens、Rocky、Train版本的支持放在SIG官方认证的第三方软件平台oepkg:
 
-- 20.03-LTS-SP1 Train: <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/train/>
-<https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/train/>
+- 20.03-LTS-SP1 Train: <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/train>
+<https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/train>
     该Train版本不是纯原生代码，包含了智能网卡支持的相关代码，用户使用前请自行评审
 
-- 20.03-LTS-SP2 Rocky： <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/>
+- 20.03-LTS-SP2 Rocky： <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens>
 
-- 20.03-LTS-SP3 Rocky： <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/>
+- 20.03-LTS-SP3 Rocky： <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky>
 
-- 20.03-LTS-SP2 Queens： <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/>
+- 20.03-LTS-SP2 Queens： <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens>
 
-- 20.03-LTS-SP3 Rocky： <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/>
+- 20.03-LTS-SP3 Rocky： <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky>
 
 另外，20.03-LTS-SP1虽然有Queens、Rocky版本的软件包，但未经过验证，请谨慎使用：
 
-- 20.03-LTS-SP1 Queens: <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/queens/>
+- 20.03-LTS-SP1 Queens: <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/queens>
 
-- 20.03-LTS-SP1 Rocky: <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/rocky/>
+- 20.03-LTS-SP1 Rocky: <https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/rocky>
 
 ## Maintainer的加入和退出
 
