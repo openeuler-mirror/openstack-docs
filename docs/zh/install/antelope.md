@@ -42,7 +42,7 @@ OpenStack SIG 提供了多种基于 openEuler 部署 OpenStack 的方法，以�
 
 本文档基于OpenStack经典的三节点环境进行部署，三个节点分别是控制节点(Controller)、计算节点(Compute)、存储节点(Storage)，其中存储节点一般只部署存储服务，在资源有限的情况下，可以不单独部署该节点，把存储节点上的服务部署到计算节点即可。
 
-首先准备三个|openEuler 25.03环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像]<https://repo.openeuler.org/openEuler-24.03-LTS-SP1/ISO/>、[qcow2镜像]<https://repo.openeuler.org/openEuler-24.03-LTS-SP1/virtual_machine_img/>。
+首先准备三个|openEuler 25.03环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像]<https://dl-cdn.openeuler.openatom.cn/openEuler-25.03/ISO/>、[qcow2镜像]<https://dl-cdn.openeuler.openatom.cn/openEuler-25.03/virtual_machine_img/>。
 
 下面的安装按照如下拓扑进行：
 
@@ -77,10 +77,10 @@ storage：   192.168.0.4
 
     [EPOL]
     name=EPOL
-    baseurl=http://repo.openeuler.org/openEuler-24.03-LTS-SP1/EPOL/main/$basearch/
+    baseurl=http://repo.openeuler.org/openEuler-25.03/EPOL/main/$basearch/
     enabled=1
     gpgcheck=1
-    gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS-SP1/OS/$basearch/RPM-GPG-KEY-openEuler
+    gpgkey=http://repo.openeuler.org/openEuler-25.03/OS/$basearch/RPM-GPG-KEY-openEuler
     EOF
     ```
 
@@ -166,7 +166,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 1. 安装软件包
 
     ```shell
-    dnf install mysql-config mariadb mariadb-server python3-PyMySQL
+    dnf install mariadb-config mariadb mariadb-server python3-PyMySQL
     ```
 
 2. 新增配置文件`/etc/my.cnf.d/openstack.cnf`，内容如下
