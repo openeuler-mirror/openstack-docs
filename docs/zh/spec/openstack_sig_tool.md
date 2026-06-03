@@ -8,15 +8,16 @@ openEuler OpenStack SIG成立于2021年，是由中国联通、中国电信、�
 ### 1.1 当前现状
 
 目前，随着SIG的不断发展，我们明显的遇到了以下几类问题：
+
 1. OpenStack技术复杂，涉及云IAAS层的计算、网络、存储、镜像、鉴权等方方面面的技术，开发者很难全知全会，提交的代码逻辑、质量堪忧。
 2. OpenStack是由python编写的，python软件的依赖问题难以处理，以OpenStack Wallaby版本为例，涉及核心python软件包400+， 每个软件的依赖层级、依赖版本错综复杂，选型困难，难以形成闭环。
 3. OpenStack软件包众多，RPM Spec编写开发量巨大，并且随着openEuler、OpenStack本身版本的不断演进，N:N的适配关系会导致工作量成倍增长，人力成本越来越大。
 4. OpenStack测试门槛过高，不仅需要开发人员熟悉OpenStack，还要对虚拟化、虚拟网桥、块存储等Linux底层技术有一定了解与掌握，部署一套OpenStack环境耗时过长，功能测试难度巨大。并且测试场景多，比如X86、ARM64架构测试，裸机、虚机种类测试，OVS、OVN网桥测试，LVM、Ceph存储测试等等，更加加重了人力成本以及技术门槛。
 
-
 ### 1.2 解决方案
 
 针对以上目前SIG遇到的问题，规范化、工具化、自动化的目标势在必行。本篇设计文档旨在在openEuler OpenStack SIG中提供一个端到端可用的开发解决方案，从技术规范到技术实现，提出严格的标准要求与设计方案，满足SIG开发者的日常开发需求，降低开发成本，减少人力投入成本，降低开发门槛，从而提高开发效率、提高SIG软件质量、发展SIG生态、吸引更多开发者加入SIG。主要动作如下：
+
 1. 输出OpenStack服务类软件、依赖库软件的RPM SPEC开发规范，开发者及Reviewer需要严格遵守规范进行开发实施。
 2. 提供OpenStack python软件依赖分析功能，一键生成依赖拓扑与结果，保证依赖闭环，避免软件依赖风险。
 3. 提供OpenStack RPM spec生成功能，针对通用性软件，提供一键生成 RPM spec的功能，缩短开发时间，降低投入成本。
@@ -24,7 +25,8 @@ openEuler OpenStack SIG成立于2021年，是由中国联通、中国电信、�
 5. 提供openEuler Gitee仓库自动化处理能力，满足批量修改软件的需求，比如创建代码分支、创建仓库、提交Pull Request等功能。
 
 以上解决方法可以统一到一个系统平台中，我们称作OpenStack SIG Tool（以下简称oos），即就是openEuler OpenStack开发平台，具体架构如下：
-```
+
+```ini
             ┌────────────────────┐        ┌─────────────────────┐
             │         CLI        │        │         GUI         │
             └─────┬─────────┬────┘        └──────────┬──────────┘
@@ -41,7 +43,9 @@ openEuler OpenStack SIG成立于2021年，是由中国联通、中国电信、�
 │Dependency Analysis│  │SPEC Generation│  │Deploy and Test│  │Code Action│
 └───────────────────┘  └───────────────┘  └───────────────┘  └───────────┘
 ```
+
 该架构主要有以下两种模式：
+
 1. Client/Server模式
      在这种模式下，oos部署成Web Server形式，Client通过REST方式调用oos。
      - 优点：提供异步调用能力，支持并发处理，支持记录持久化。
@@ -59,6 +63,7 @@ openEuler OpenStack SIG成立于2021年，是由中国联通、中国电信、�
 ### 2.1 OpenStack Spec规范
 
 Spec规范是一个或多个spec模板，针对RPM spec的每个关键字及构建章节，严格规定相关内容，开发者在编写spec时，必须满足规范要求，否则代码不允许被合入。规范内容由SIG maintainer公开讨论后形成结论，并定期审视更新。任何人都有权利提出对规范的质疑和建议， maintainer负责解释与刷新。规范目前包括两类：
+
 1. 服务类软件规范
   此类软件以Nova、Neutron、Cinder等OpenStack核心服务为例，它们一般定制化要求高，内容区别大，必要人为手动编写。规范需清晰规定软件的分层方法、构建方法、软件包组成内容、测试方法、版本号规则等内容。
 
@@ -73,7 +78,7 @@ OpenStack每个服务通常包含若干子服务，针对这些子服务，我�
 
 采用分层架构，RPM包结构如下图所示，以openstack-nova为例：
 
-```
+```ini
 Level | Package                                                                       | Example
       |                                                                               |  
  ┌─┐  |                       ┌──────────────┐        ┌────────────────────────┐      | ┌────────────────────┐ ┌────────────────────────┐
@@ -120,7 +125,7 @@ Level | Package                                                                 
 
 有些openstack组件本身只包含一个服务，不存在子服务的概念,这种服务则只需要分为两级：
 
-```
+```ini
  Level | Package                                                         | Example
        |                                                                 |  
   ┌─┐  |               ┌──────────────┐  ┌────────────────────────┐      | ┌────────────────────────┐ ┌────────────────────────────┐
@@ -145,7 +150,7 @@ Level | Package                                                                 
 
 还有些项目虽然有若干子RPM包，但这些子RPM包是互斥的，则这种服务的结构如下：
 
-```
+```ini
 Level | Package                                                                           | Example
       |                                                                                   |  
  ┌─┐  |                       ┌──────────────┐        ┌────────────────────────┐          | ┌───────────────────────┐ ┌───────────────────────────┐
@@ -189,7 +194,7 @@ Level | Package                                                                 
 
 一个依赖库一般只包含一个RPM包，不需要做拆分处理。
 
-```
+```ini
  Level | Package                                         | Example
        |                                                 |      
   ┌─┐  |  ┌─────────────────┐ ┌────────────────────────┐ | ┌──────────────────────────┐ ┌───────────────────────────────┐
@@ -204,6 +209,7 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
 ### 2.2 软件依赖功能
 
 软件依赖分析功能为用户提供一键分析目标OpenStack版本包含的全量python软件依赖拓扑及对应软件版本的能力。并自动与目标openEuler版本进行比对，输出对应的软件包开发建议。本功能包含两个子功能：
+
 - 依赖分析
 
      对OpenStack python包的依赖树进行解析，拆解依赖拓扑。依赖树本质上是对有向图的遍历，理论上，一个正常的python依赖树是一个有向无环图，有向无环图的解析方法很多，这里采用常用的广度优先搜索方法即可。但在某些特殊场景下，python依赖树会变成有向有环图，例如：Sphinx是一个文档生产项目，但它自己的文档生成也依赖Sphinx，这就导致了依赖环的形成。针对这种问题，我们只需要把环上的特定节点手动断开即可。类似的还有一些测试依赖库。另一种规避方法是跳过文档、测试这种非核心库，这样不仅避免了依赖环的形成，也会极大减少软件包的数量，降低开发工作量。以OpenStack Wallaby版本为例，全量依赖包大概在700+以上，去掉文档、测试后，依赖包大概是300+左右。因此我们引入`core`核心的概念，用户根据自己的需求，选择要分析的软件范围。另外虽然OpenStack包含服务几十个，但用户可能只需要其中的某些服务，因此我们另外引入`projects`过滤器，用户可以根据自己的需求，指定分析的软件依赖范围。
@@ -219,7 +225,7 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
 
      输出：所有涉及的软件包及每个软件包的对应内容。格式如下：
 
-     ```
+     ```ini
      └──{OpenStack版本名}_cached_file
           └──packageA.yaml
           └──packageB.yaml
@@ -229,7 +235,7 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
 
      每个软件内容格式如下：
 
-     ```
+     ```ini
      {
         "name": "packageA", 
         "version_dict": {
@@ -247,13 +253,13 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
      ```
 
      关键字说明
+
      |       Key         | Description |
      |:-----------------:|:-----------:|
      |  name             | 软件包名                                         |
      | version_dict      | 软件版本要求，包括等于、大于等于、小于、不等于，等等 |
      | version_dict.deep | 表示该软件在全量依赖树的深度，以及深度遍历的路径     |
      | requires          | 包含本软件的依赖软件列表                           |
-
 
 - 依赖比对
      输入：依赖分析结果、目标openEuler版本以及base比对基线
@@ -295,7 +301,8 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
      - sync OR async: async
 
      - request body:
-          ```
+
+          ```ini
           {
                "release"[required]: Enum("OpenStack Relase"),
                "runtime"[optional][Default: "3.10"]: Enum("Python version"),
@@ -303,13 +310,16 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
                "projects"[optional][Default: None]: List("OpenStack service")
           }
           ```
+
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Running", "Error")
           }
           ```
+
 2. 获取依赖分析
      - CLI: `oos dependence analysis show`、`oos dependence analysis list`
 
@@ -322,7 +332,8 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
      - request body: None
 
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Running", "Error", "OK")
@@ -341,7 +352,8 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
      - request body: None
 
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Error", "OK")
@@ -358,7 +370,8 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
      - sync OR async: async
 
      - request body:
-          ```
+
+          ```ini
           {
                "analysis_id"[required]: UUID,
                "compare"[optional][Default: None]: {
@@ -369,8 +382,10 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
                }
           }
           ```
+
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Running", "Error")
@@ -389,7 +404,8 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
      - request body: None
 
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "data" RAW(result data file)
@@ -408,7 +424,8 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
      - request body: None
 
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Error", "OK")
@@ -416,17 +433,20 @@ openEuler社区对python2和python3 RPM包的命名有要求，python2的包前�
           ```
 
 ### 2.3 软件SPEC生成功能
+
 OpenStack依赖的大量python库是面向开发者的，这种库不对外提供用户服务，只提供代码级调用，其RPM内容构成单一、格式固定，适合使用工具化方式提高开发效率。
 
 #### 2.3.1 SPEC生成规范
 
 SPEC编写一般分为几个阶段，每个阶段有对应的规范要求：
+
 1. 常规项填写，包括Name、Version、Release、Summary、License等内容，这些内容由目标软件的pypi信息提供
 2. 子软件包信息填写，包括软件包名、编译依赖、安装依赖、描述信息等。这些内容也由目标软件的pypi信息提供。其中软件包名需要有明显的python化显示，比如以`python3-`为前缀。
 3. 构建过程信息填写，包括%prep、%build %install %check内容，这些内容形式固定，生成对应rpm宏命令即可。
 4. RPM包文件封装阶段，本阶段通过文件搜索方式，把bin、lib、doc等内容分别放到对应目录即可。
 
 **NOTE**：在通用规范外，也有一些例外情况，需要特殊说明：
+
 1. 软件包名如果本身已包含`python`这样的字眼，不再需要添加`python-`或`python3-`前缀。
 2. 软件构建和安装阶段，根据软件本身的安装方式不同，宏命令包括`%py3_build`或`pyproject_build`，需要人工审视。
 3. 如果软件本身包含C语言等编译类代码，则需要移除`BuildArch: noarch`关键字,并且在%file阶段注意RPM宏`%{python3_sitelib}`和`%{python3_sitearch}`的区别。
@@ -443,7 +463,8 @@ SPEC编写一般分为几个阶段，每个阶段有对应的规范要求：
      - sync OR async: async
 
      - request body:
-          ```
+
+          ```ini
           {
                "name"[required]: String,
                "version"[optional][Default: "latest"]: String,
@@ -452,8 +473,10 @@ SPEC编写一般分为几个阶段，每个阶段有对应的规范要求：
                "pyproject"[optional][Default: False]: Boolean,
           }
           ```
+
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Running", "Error")
@@ -461,7 +484,8 @@ SPEC编写一般分为几个阶段，每个阶段有对应的规范要求：
           ```
 
 2. 获取SPEC
-     -  CLI: `oos spec show`、`oos spec list`
+
+     - CLI: `oos spec show`、`oos spec list`
 
      - endpoint: `/spec/{UUID}`、 `/spec/`
 
@@ -472,7 +496,8 @@ SPEC编写一般分为几个阶段，每个阶段有对应的规范要求：
      - request body: None
 
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Running", "Error", "OK")
@@ -489,7 +514,8 @@ SPEC编写一般分为几个阶段，每个阶段有对应的规范要求：
      - sync OR async: async
 
      - request body:
-          ```
+
+          ```ini
           {
                "name"[required]: String,
                "version"[optional][Default: "latest"]: String,
@@ -497,7 +523,8 @@ SPEC编写一般分为几个阶段，每个阶段有对应的规范要求：
           ```
 
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Running", "Error")
@@ -516,7 +543,8 @@ SPEC编写一般分为几个阶段，每个阶段有对应的规范要求：
      - request body: None
 
      - response body:
-          ```
+
+          ```ini
           {
                "ID": UUID,
                "status": Enum("Error", "OK")
@@ -543,7 +571,7 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
 
   提供快速发放openEuler环境的能力，支持的发放方式包括`创建公有云资源`和`纳管已有环境`，具体设计如下：
 
-  ```
+  ```ini
   **NOTE**
      openEuler的OpenStack支持以RPM + systemd的方式为主，暂不支持容器方式。
   ```
@@ -561,7 +589,8 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
           - sync OR async: async
 
           - request body:
-               ```
+
+               ```ini
                {
                     "name"[required]: String,
                     "type"[required]: Enmu("all-in-one", "cluster"),
@@ -572,7 +601,8 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Running", "Error")
@@ -591,7 +621,8 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
           - request body: None
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "Provider": String,
@@ -603,6 +634,7 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
                     "create_time": TIME,
                }
                ```
+
      3. 删除环境
           - CLI: `oos env delete`
 
@@ -615,7 +647,8 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
           - request body: None
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Error", "OK")
@@ -635,7 +668,8 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
           - sync OR async: sync
 
           - request body:
-               ```
+
+               ```ini
                {
                     "name"[required]: String,
                     "ip"[required]: IP_ADDRESS,
@@ -645,7 +679,8 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Error", "OK")
@@ -665,7 +700,8 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
           - sync OR async: async
 
           - request body:
-               ```
+
+               ```ini
                {
                     "target"[required]: UUID(environment),
                     "release"[required]: Enmu("OpenStack_Release"),
@@ -673,7 +709,8 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Running", "Error")
@@ -690,14 +727,16 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
           - sync OR async: async
 
           - request body:
-               ```
+
+               ```ini
                {
                     "target"[required]: UUID(environment),
                }
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Running", "Error")
@@ -714,14 +753,16 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
           - sync OR async: async
 
           - request body:
-               ```
+
+               ```ini
                {
                     "target"[required]: UUID(environment),
                }
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Running", "Error")
@@ -733,6 +774,7 @@ OpenStack的部署场景多样、部署流程复杂、部署技术门槛较高�
 环境部署成功后，SIG开发平台提供基于已部署OpenStack环境的自动化测试功能。主要包含以下几个重要内容：
 
 OpenStack本身提供一套完善的测试框架。包括`单元测试`和`功能测试`，其中`单元测试`在`2.3章节`中已经由RPM spec包含，spec的%check阶段可以定义每个项目的单元测试方式，一般情况下只需要添加`pytest`或`stestr`即可。`功能测试`由OpenStack Tempest服务提供，在上文所述的自动化部署`oos env init`阶段，oos会自动安装Tempest并生成默认的配置文件。
+
 - CLI: `oos env test`
 
 - endpoint: `/environment/test`
@@ -742,26 +784,29 @@ OpenStack本身提供一套完善的测试框架。包括`单元测试`和`功�
 - sync OR async: async
 
 - request body:
-     ```
+
+     ```ini
      {
           "target"[required]: UUID(environment),
      }
      ```
 
 - response body:
-     ```
+
+     ```ini
      {
           "ID": UUID,
           "status": Enum("Running", "Error")
      }
      ```
 
-测试执行完后，oos会输出测试报告，默认情况下，oos使用`subunit2html `工具，生成html格式的Tempest测试结果文件。
+测试执行完后，oos会输出测试报告，默认情况下，oos使用`subunit2html`工具，生成html格式的Tempest测试结果文件。
 
 ### 2.5 openEuler自动化开发功能
 
 OpenStack涉及软件包众多，随着版本不断地演进、支持服务不断的完善，SIG维护的软件包列表会不断刷新，为了降低重复的开发动作，oos还封装了一些易用的代码开发平台自动化能力，比如基于Gitee的自动代码提交能力。功能如下：
-```
+
+```ini
      ┌───────────────────────────────────────────────────┐
      │                     Code Action                   │
      └─────────────────────┬─────────────────────────────┘
@@ -772,7 +817,6 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
      │Repo Action│  │Branch Action│  │Pull Request Action│
      └───────────┘  └─────────────┘  └───────────────────┘
 ```
-
 
 1. `Repo Action`提供与软件仓相关的自动化功能：
 
@@ -786,7 +830,8 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
           - sync OR async: async
 
           - request body:
-               ```
+
+               ```ini
                {
                     "project"[required]: String,
                     "repo"[required]: String,
@@ -795,13 +840,13 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Running", "Error")
                }
                ```
-
 
 2. `Branch Action`提供与软件分支相关的自动化功能：
 
@@ -815,7 +860,8 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
           - sync OR async: async
 
           - request body:
-               ```
+
+               ```ini
                {
                     "branches"[required]: {
                          "branch-name"[required]: String,
@@ -826,7 +872,8 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Running", "Error")
@@ -845,7 +892,8 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
           - sync OR async: sync
 
           - request body:
-               ```
+
+               ```ini
                {
                     "repo"[required]: String,
                     "pr_number"[required]: Int,
@@ -854,7 +902,8 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("OK", "Error")
@@ -871,14 +920,16 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
           - sync OR async: async
 
           - request body:
-               ```
+
+               ```ini
                {
                     "repo"[optional][Default: "None"]: List[String]
                }
                ```
 
           - response body:
-               ```
+
+               ```ini
                {
                     "ID": UUID,
                     "status": Enum("Running", "Error")
@@ -886,6 +937,7 @@ OpenStack涉及软件包众多，随着版本不断地演进、支持服务不�
                ```
 
 ## 3. 质量、安全与合规
+
 SIG开源软件需要符合openeEuler社区对其中软件的各种要求，并且也要符合OpenStack社区软件的出口标准。
 
 ### 3.1 质量与安全
@@ -908,6 +960,7 @@ SIG开源软件需要符合openeEuler社区对其中软件的各种要求，并�
      本软件面向openEuler社区OpenStack开发行为，不涉及服务上线或者商业生产落地，所有代码公开透明，不涉及私有功能及代码。因此不提供例如节点冗余、容灾备份能功能。
 
 ### 3.2 合规
+
 1. License合规
 
      本平台采用Apache2.0 License，不限制下游fork软件的闭源与商业行为，但下游软件需标注代码来源以及保留原有License。

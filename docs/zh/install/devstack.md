@@ -6,7 +6,7 @@
 
 ## 安装步骤
 
-准备一个openEuler环境, 20.03 LTS SP2[虚拟机镜像地址](https://repo.openeuler.org/openEuler-20.03-LTS-SP2/virtual_machine_img/), master[虚拟机镜像地址](http://121.36.84.172/dailybuild/openEuler-Mainline/)
+准备一个openEuler环境, 20.03 LTS SP2[虚拟机镜像地址](https://repo.openeuler.org/openEuler-20.03-LTS-SP2/virtual_machine_img/), master[虚拟机镜像地址](http://121.36.84.172/dailybuild/EBS-openEuler-Mainline/)
 
 1. 配置yum源
 

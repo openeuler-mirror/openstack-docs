@@ -1,0 +1,34 @@
+label: OpenStack 用户手册
+isManual: true
+description: 一个开源的云计算管理平台项目
+sections:
+  - label: OpenStack SIG
+    href: ./index.md
+  - label: 贡献指导
+    sections:
+      - label: RPM开发流程
+        href: ./contribute/rpm_packaging_reference.md
+  - label: 安装指导
+    sections:
+      - label: devstack
+        href: ./install/devstack.md
+      - label: antelope
+        href: ./install/antelope.md
+      - label: wallaby
+        href: ./install/wallaby.md
+  - label: 自研特性
+    sections:
+      - label: 虚拟机高低优先级
+        href: ./spec/priority_vm.md
+      - label: 流量分散
+        href: ./spec/distributed_traffic.md
+      - label: openkite
+        href: ./spec/openkite.md
+      - label: OpenStack工具
+        href: ./spec/openstack_sig_tool.md
+      - label: OpenStack工具依赖
+        href: ./spec/openstack_sig_tool_requirement.md
+  - label: 操作及管理指导
+    sections:
+      - label: 安全指南
+        href: ./security/security_guide.md
