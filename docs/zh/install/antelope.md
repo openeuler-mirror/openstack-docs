@@ -635,7 +635,7 @@ Glance是OpenStack提供的镜像服务，负责虚拟机、裸机镜像的上�
     - 导入环境变量
 
     ```shell
-    source ~/.admin-openrcu
+    source ~/.admin-openrc
     ```
 
     - 下载镜像
@@ -2254,7 +2254,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
     user_domain_name = default
     project_name = service
     username = ironic_inspector
-    password = IRONICPASSWD
+    password = IRONIC_INSPECTOR_PASS
     region_name = RegionOne
     memcache_servers = controller:11211
     token_cache_time = 300
@@ -2588,8 +2588,8 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
     project_domain_name = Default
     project_name = service
     user_domain_name = Default
-    password = trove
-    username = TROVE_PASS
+    password = TROVE_PASS
+    username = trove
     
     [service_credentials]
     auth_url = http://controller:5000/v3/
@@ -3090,8 +3090,8 @@ Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, S
     project_domain_name = Default
     project_name = service
     user_domain_name = Default
-    password = password
-    username = PLACEMENT_PASS
+    password = PLACEMENT_PASS
+    username = placement
     auth_url = http://controller:5000/v3/
     auth_type = password
     auth_section = keystone_authtoken
