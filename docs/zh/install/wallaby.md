@@ -8,7 +8,7 @@ OpenStack 是一个社区，也是一个项目。它提供了一个部署云的�
 
 作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。
 
-openEuler 24.03-LTS-SP1 版本官方源已经支持 OpenStack-Wallaby 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。
+openEuler 24.03-LTS-SP4 版本官方源已经支持 OpenStack-Wallaby 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。
 
 ## 约定
 
@@ -33,7 +33,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 涉及到以上约定的服务如下：
 
-- CinderSP1
+- Cinder
 - Nova
 - Neutron
 
@@ -41,7 +41,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 ### 环境配置
 
-1. 配置 24.03 LTS SP1 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack
+1. 配置 24.03 LTS SP4 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack
 
     ```shell
     yum update
@@ -56,10 +56,10 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     [EPOL]
     name=EPOL
-    baseurl=http://repo.openeuler.org/openEuler-24.03-LTS-SP1/EPOL/main/$basearch/
+    baseurl=http://repo.openeuler.org/openEuler-24.03-LTS-SP4/EPOL/main/$basearch/
     enabled=1
     gpgcheck=1
-    gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS-SP1/OS/$basearch/RPM-GPG-KEY-openEuler
+    gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS-SP4/OS/$basearch/RPM-GPG-KEY-openEuler
     EOF
     ```
 
@@ -1411,7 +1411,7 @@ systemctl start rpcbind.service nfs-server.service tgtd.service iscsid.service \
 
 ***注意***
 
-当cinder使用tgtadm的方式挂卷的时候，要修改/etc/tgt/tgtd.conf，内容如下，保证tgtd可以发现cinder-volume的iscsi target。
+当cinder使用`tgtadm`的方式挂卷的时候，要修改/etc/tgt/tgtd.conf，内容如下，保证tgtd可以发现cinder-volume的iscsi target。
 
 ```shell
 include /var/lib/cinder/volumes/*
@@ -1472,7 +1472,7 @@ openstack volume service list
     ```
 
 4. 验证
-    打开浏览器，输入网址<http://HOSTIP/dashboard/>，登录 horizon。
+    打开浏览器，输入网址 `http://HOSTIP/dashboard` ，登录 horizon。
 
     ***注意***
 
@@ -2174,7 +2174,7 @@ yum install diskimage-builder
 
 ### Kolla 安装
 
-Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 24.03 LTS SP1中引入了Kolla和Kolla-ansible服务。
+Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 24.03 LTS SP4中引入了Kolla和Kolla-ansible服务。
 
 Kolla的安装十分简单，只需要安装对应的RPM包即可
 
@@ -2797,9 +2797,9 @@ yum install openstack-aodh-api openstack-aodh-evaluator openstack-aodh-notifier 
 
 ***注意***
 
-aodh依赖的软件包pytho3-pyparsing在openEuler的OS仓不适配，需要覆盖安装OpenStack对应版本，可以使用`yum list |grep pyparsing |grep OpenStack | awk '{print $2}'`获取对应的版本
+`aodh`依赖的软件包`python3-pyparsing`在openEuler的OS仓不适配，需要覆盖安装OpenStack对应版本，可以使用`yum list |grep pyparsing |grep OpenStack | awk '{print $2}'`获取对应的版本
 
-VERSION,然后再`yum install -y python3-pyparsing-VERSION`覆盖安装适配的pyparsing
+VERSION,然后再`yum install -y python3-pyparsing-VERSION`覆盖安装适配的`pyparsing`
 
 4.修改配置文件
 
@@ -3152,12 +3152,12 @@ kolla_openeuler_plugin = false
 | swift_storage_devices  | swift使用的卷设备名 |
 | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
 
-4.华为云上面创建一台openEuler 24.03-LTS-SP1的x86_64虚拟机，用于部署`all in one` 的 OpenStack
+4.华为云上面创建一台openEuler 24.03-LTS-SP4的x86_64虚拟机，用于部署`all in one` 的 OpenStack
 
 ```shell
 # sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
 dnf install sshpass
-oos env create -r 24.03-lts-sp1 -f small -a x86 -n test-oos all_in_one
+oos env create -r 24.03-lts-sp4 -f small -a x86 -n test-oos all_in_one
 ```
 
 具体的参数可以使用`oos env create --help`命令查看
@@ -3178,14 +3178,14 @@ oos env setup test-oos -r wallaby
 oos env init test-oos
 ```
 
-命令执行成功后，在用户的根目录下会生成mytest目录，进入其中就可以执行tempest run命令了。
+命令执行成功后，在用户的根目录下会生成`mytest`目录，进入其中就可以执行tempest run命令了。
 
 如果是以主机纳管的方式部署 OpenStack 环境，总体逻辑与上文对接华为云时一致，1、3、5、6步操作不变，去除第2步对华为云provider信息的配置，第4步由在华为云上创建虚拟机改为纳管主机操作。
 
 ```shell
 # sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
 dnf install sshpass
-oos env manage -r 24.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
+oos env manage -r 24.03-lts-sp4 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
 ```
 
 替换`TARGET_MACHINE_IP`为目标机ip、`TARGET_MACHINE_PASSWD`为目标机密码。具体的参数可以使用`oos env manage --help`命令查看。

@@ -1,6 +1,6 @@
 # OpenStack安全指南
 
-本文翻译自[上游安全指南](https://gitee.com/link?target=https%3A%2F%2Fdocs.openstack.org%2Fsecurity-guide%2F)
+本文翻译自[上游安全指南](https://docs.openstack.net.cn/security-guide/)
 
 [TOC]
 
@@ -381,7 +381,7 @@ NIST将混合云定义为两个或多个不同的云基础设施（如私有云�
 
 OpenStack 采用模块化架构，提供一组核心服务，以促进可扩展性和弹性作为核心设计原则。本章简要回顾了 OpenStack 组件、它们的用例和安全注意事项。
 
-[![../_images/marketecture-diagram.png](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)
+[![../img/security/architecture_diagram.png](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)
 
 ### 计算
 
@@ -1320,7 +1320,7 @@ server {
 
 默认配置文件位于 `/etc/apache2/apache2.conf` Ubuntu、RHEL 和 CentOS、 `/etc/httpd/conf/httpd.conf` `/etc/apache2/httpd.conf` openSUSE 和 SUSE Linux Enterprise 上。
 
-```shell
+```ini
 <VirtualHost <ip address>:80>
   ServerName <site FQDN>
   RedirectPermanent / https://<site FQDN>/
@@ -2447,13 +2447,13 @@ XenServer 5.6 包含一个名为透明页面共享 （TPS） 的内存过量使�
 
 #### 参考书目
 
-- Sunar、Eisenbarth、Inci、Gorka Irazoqui Apecechea。对 Xen 和 VMware 进行细粒度跨虚拟机攻击是可能的！2014。 <https://eprint.iacr.org/2014/248.pfd>
-- Artho、Yagi、Iijima、Kuniyasu Suzaki。内存重复数据删除对客户机操作系统的威胁。2011 年。<https://staff.aist.go.jp/c.artho/papers/EuroSec2011-suzaki.pdf>
+- Sunar、Eisenbarth、Inci、Gorka Irazoqui Apecechea。对 Xen 和 VMware 进行细粒度跨虚拟机攻击是可能的！2014。 
+- Artho、Yagi、Iijima、Kuniyasu Suzaki。内存重复数据删除对客户机操作系统的威胁。2011 年。
 - KVM：基于内核的虚拟机。内核相同页合并。2010。<http://www.linux-kvm.org/page/KSM>
 - Xen 项目，Xen 安全模块：XSM-FLASK。2014。 <http://wiki.xen.org/wiki/Xen_Security_Modules_:_XSM-FLASK>
 - SELinux 项目，SVirt。2011。 <http://selinuxproject.org/page/SVirt>
 - Intel.com，采用英特尔可信执行技术 （Intel TXT） 的可信计算池。<http://www.intel.com/txt>
-- AppArmor.net，AppArmor 主页。2011。 <http://wiki.apparmor.net/index.php/Main_Page>
+- AppArmor.net，AppArmor 主页。2011。
 - Kernel.org，CGroups。2004。<https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>
 - 计算机安全资源中心。完整虚拟化技术安全指南。2011。 <http://csrc.nist.gov/publications/nistpubs/800-125/SP800-125-final.pdf>
 - 国家信息保障伙伴关系，国家安全电信和信息系统安全政策。2003。<http://www.niap-ccevs.org/cc-scheme/nstissp_11_revised_factsheet.pdf>
@@ -4343,7 +4343,7 @@ rsync 协议用于在存储服务节点之间复制数据以实现高可用性�
 
 ##### HTTP 监听端口
 
-如前所述，您应该将 Web 服务配置为非 root（无 UID 0）用户 `swift` 。需要使用大于 1024 的端口才能轻松完成此操作，并避免以 root 身份运行 Web 容器的任何部分。通常，使用 HTTP REST  API 并执行身份验证的客户端会自动从身份验证响应中检索所需的完整 REST API URL。OpenStack 的 REST API  允许客户端对一个 URL 进行身份验证，然后被告知对实际服务使用完全不同的 URL。例如，客户端向  <https://identity.cloud.example.org:55443/v1/auth> 进行身份验证，并获取其身份验证密钥和存储  URL（代理节点或负载均衡器的 URL）<https://swift.cloud.example.org:44443/v1/AUTH_8980>  响应。
+如前所述，您应该将 Web 服务配置为非 root（无 UID 0）用户 `swift` 。需要使用大于 1024 的端口才能轻松完成此操作，并避免以 root 身份运行 Web 容器的任何部分。通常，使用 HTTP REST  API 并执行身份验证的客户端会自动从身份验证响应中检索所需的完整 REST API URL。OpenStack 的 REST API  允许客户端对一个 URL 进行身份验证，然后被告知对实际服务使用完全不同的 URL。例如，客户端向  `https://identity.cloud.example.org:55443/v1/auth` 进行身份验证，并获取其身份验证密钥和存储  URL（代理节点或负载均衡器的 URL）`https://swift.cloud.example.org:44443/v1/AUTH_8980`  响应。
 
 将 Web 服务器配置为以非 root 用户身份启动和运行的方法因 Web 服务器和操作系统而异。
 
@@ -6326,7 +6326,7 @@ OpenStack 社区重视您的设置和测试工作，并希望得到您的反馈�
 
 #### OpenStack IRC 频道 
 
-OpenStack 社区位于 OFTC 网络上的 #openstack IRC 频道中。您可以在这里提问，获取即时反馈，解决紧急问题。要安装 IRC  客户端或使用基于浏览器的客户端，请访问 <https://webchat.oftc.net/。您还可以使用Colloquy> （Mac OS  X）、mIRC （Windows） 或 XChat （Linux）。当您在 IRC 频道中并且想要共享代码或命令输出时，通常接受的方法是使用  Paste Bin。OpenStack 项目有一个Paste网站。只需将较长的文本或日志粘贴到 Web  表单中，即可获得一个URL，可以将其粘贴到频道中。OpenStack IRC 频道处于 `#openstack` . `irc.oftc.net` 您可以在 wiki 的 IRC 页面上找到所有 OpenStack IRC 频道的列表。
+OpenStack 社区位于 OFTC 网络上的 #openstack IRC 频道中。您可以在这里提问，获取即时反馈，解决紧急问题。要安装 IRC  客户端或使用基于浏览器的客户端，请访问 `https://webchat.oftc.net/。您还可以使用Colloquy` （Mac OS  X）、mIRC （Windows） 或 XChat （Linux）。当您在 IRC 频道中并且想要共享代码或命令输出时，通常接受的方法是使用  Paste Bin。OpenStack 项目有一个Paste网站。只需将较长的文本或日志粘贴到 Web  表单中，即可获得一个URL，可以将其粘贴到频道中。OpenStack IRC 频道处于 `#openstack` . `irc.oftc.net` 您可以在 wiki 的 IRC 页面上找到所有 OpenStack IRC 频道的列表。
 
 #### OpenStack 邮件列表
 
@@ -7222,7 +7222,7 @@ dnsmasq
 
 域名系统（DNS）
 
-用于确定 Internet 域名到地址和地址到名称解析的系统。DNS 通过将 IP 地址转换为更易于记忆的地址来帮助浏览 Internet。例如，将  111.111.111.1 转换为 <www.yahoo.com。所有域及其组件（如邮件服务器）都利用> DNS  解析到适当的位置。DNS服务器通常设置在主从关系中，以便主服务器故障调用从服务器。还可以对 DNS 服务器进行群集或复制，以便对一个 DNS  服务器所做的更改自动传播到其他活动服务器。在计算中，支持将 DNS 条目与浮动 IP 地址、节点或单元相关联，以便主机名在重新启动时保持一致。
+用于确定 Internet 域名到地址和地址到名称解析的系统。DNS 通过将 IP 地址转换为更易于记忆的地址来帮助浏览 Internet。例如，将 111.111.111.1 转换为 `www.yahoo.com`。所有域及其组件（如邮件服务器）都利用 DNS 解析到适当的位置。DNS服务器通常设置在主从关系中，以便主服务器故障调用从服务器。还可以对 DNS 服务器进行群集或复制，以便对一个 DNS  服务器所做的更改自动传播到其他活动服务器。在计算中，支持将 DNS 条目与浮动 IP 地址、节点或单元相关联，以便主机名在重新启动时保持一致。
 
 下载
 

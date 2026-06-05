@@ -20,6 +20,7 @@
 虚机高低优先级特性主要影响虚机创建后单机层面的资源调度分配策略。高优先级虚机和低优先级虚机发生资源竞争时，资源优先分配给前者，严格保障其QoS。
 
 Nova针对虚机高低优先级特性有以下改变：
+
 1. VM对象和flavor新增高低优先级属性配置。同时结合业务场景，约束高优先级属性只能设置给绑核类型虚机，低优先级属性只能设置给非绑核类虚机。
 2. 对于具有优先级属性的虚机，需修改libvirt XML配置，让单机上的QoS管理组件（名为Skylark）感知，从而自动进行资源分配和QoS管理。
 3. 低优先级虚机的绑核范围有改变，以充分利用高优先级虚机空闲的资源。
@@ -42,7 +43,7 @@ Nova针对虚机高低优先级特性有以下改变：
 
 创建虚拟机API中可选参数`os:scheduler_hints.priority`可被设置成`high`或`low`，用于设置VM对象的优先级。
 
-```
+```ini
 POST v2/servers (v2.1默认版本)
 {
     "OS-SCH-HNT:scheduler_hints": {"priority": "high"}
@@ -73,7 +74,6 @@ POST v2/servers (v2.1默认版本)
 高低优先级机器创建按照priority标志，对虚拟机进行标识。
 
 * Libvirt XML中新增属性`<resource>`片段，包括 `/high_prio_machine`、`/low_prio_machine`两种值，分别表示高低优先级虚拟机。该片段本身在Nova中没有任何作用，只是为`Skylark`QoS服务指明VM的高低优先级属性。
-
 
 ### 举例
 
@@ -107,7 +107,6 @@ POST v2/servers (v2.1默认版本)
     
     当dedicated核心数为4时，shared核心数为10时，用户期望的全局超分 = (8*10+4)/14 = 6
     ```
-
 
 ## 开发节奏
 
