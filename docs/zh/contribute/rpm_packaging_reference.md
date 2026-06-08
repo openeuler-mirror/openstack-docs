@@ -11,12 +11,12 @@ SIG 编包时，会以共享表格的形式，将需要处理的软件包整理�
 | pyrsistent| python-pyrsistent | sig-python-modules | 0.18.0 | 0.18.1 | | [] | 0.18.1 | Need Upgrade | [] | 13 |  |  |  |
 | ... | | | | | | | | | | | | | |
 
-“Project Name”列为软件项目名。“openEuler Repo”列为此项目在 openEuler gitee 上的仓库名，同时也是此项目在openEuler系统中的软件包名。所有 openEuler 的软件包仓库均存放于<https://gitee.com/src-openeuler之中。“SIG”列记录软件包归属于哪个> SIG。
+“Project Name”列为软件项目名。“openEuler Repo”列为此项目在 openEuler gitee 上的仓库名，同时也是此项目在openEuler系统中的软件包名。所有 openEuler 的软件包仓库均存放于<https://atomgit.com/src-openeuler之中。“SIG”列记录软件包归属于哪个> SIG。
 
 处理时首先查看“Status”列，该列表示软件包状态。软件包共有6种状态，开发者需要根据“Status”进行相应处理。
 
 1. “OK”：当前版本直接可用，不需要处理。
-2. “Need Create Repo”：openEuler 系统中没有此软件包，需要在 Gitee 中的 src-openeuler repo 仓新建仓库。流程可参考社区指导文档：[新增软件包](https://gitee.com/openeuler/community/blob/master/zh/contributors/create-package.md)。创建并初始化仓库后，将软件包放入需要的 OBS 工程。
+2. “Need Create Repo”：openEuler 系统中没有此软件包，需要在 Gitee 中的 src-openeuler repo 仓新建仓库。流程可参考社区指导文档：[新增软件包](https://atomgit.com/openeuler/community/blob/master/zh/contributors/create-package.md)。创建并初始化仓库后，将软件包放入需要的 OBS 工程。
 3. “Need Create Branch”：仓库中没有所需分支，需要开发者创建并初始化。
 4. “Need Init Branch”：需要初始化分支并将此分支软件包放入需要的 OBS 工程。表明分支存在，但是里面并没有任何版本的源码包，开发者需要对此分支进行初始化，上传所需版本源码包及 spec 文件等。以22.09开发周期适配 Yoga 版本为例，此任务直接在 master 分支工作。get_gitee_project_version 项目状态为“Need Init Branch””，它对应的“python-neutron-tempest-plugin”仓库的master分支，在处理前，只有 README.md 和 README.en.md 两个文件，需要开发者初始化分支。
 5. “Need Downgrade”：降级软件包。此种情况靠后处理，与 SIG 确认后再操作。
@@ -30,9 +30,9 @@ SIG 编包时，会以共享表格的形式，将需要处理的软件包整理�
 
 ## SIG 处理编包问题流程
 
-目前 SIG 处理编包问题主要使用 SIG 自己编写的 oos 工具。oos 工具细节参考 [oos README](https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md)。不同“Status”处理时涉及的“升级”、“初始化分支”、“软件包放入 OBS 工程”等操作，oos 工具有对应实现。
+目前 SIG 处理编包问题主要使用 SIG 自己编写的 oos 工具。oos 工具细节参考 [oos README](https://atomgit.com/openeuler/openstack/blob/master/tools/oos/README.md)。不同“Status”处理时涉及的“升级”、“初始化分支”、“软件包放入 OBS 工程”等操作，oos 工具有对应实现。
 
-以 Yoga 版本升级 python-pyrsistent 软件包为例，演示编包流程，帮助开发者熟悉 OpenStack SIG 基于 oos 工具的打包相关流程。在了解基础流程后，开发者可通过[oos README](https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md)了解其余操作。python-pyrsistent 软件包信息参见上文表格。该软件包需要从0.18.0版本升级到0.18.1版本。Yoga 版本是在22.09版本开发规划中，当前为22年5月，直接提交到master分支即可。
+以 Yoga 版本升级 python-pyrsistent 软件包为例，演示编包流程，帮助开发者熟悉 OpenStack SIG 基于 oos 工具的打包相关流程。在了解基础流程后，开发者可通过[oos README](https://atomgit.com/openeuler/openstack/blob/master/tools/oos/README.md)了解其余操作。python-pyrsistent 软件包信息参见上文表格。该软件包需要从0.18.0版本升级到0.18.1版本。Yoga 版本是在22.09版本开发规划中，当前为22年5月，直接提交到master分支即可。
 
 ### 签署 CLA
 
@@ -51,7 +51,7 @@ rpmdev-setuptree
 pip install openstack-sig-tool==1.0.6
 ```
 
-说明：openstack-sig-tool 在 1.1.0 版本对 `oos spec` 命令进行了[重构](https://gitee.com/openeuler/openstack/commit/9083ba741acdea4d986cb2a58069156693832d09)。如下流程涉及 `oos spec` 命令的操作对应 1.0.6 版本。建议安装新版 [oos](https://gitee.com/openeuler/openstack/tree/master/tools/oos), 并参考对应 [README](https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md) 使用。
+说明：openstack-sig-tool 在 1.1.0 版本对 `oos spec` 命令进行了[重构](https://atomgit.com/openeuler/openstack/commit/9083ba741acdea4d986cb2a58069156693832d09)。如下流程涉及 `oos spec` 命令的操作对应 1.0.6 版本。建议安装新版 [oos](https://atomgit.com/openeuler/openstack/tree/master/tools/oos), 并参考对应 [README](https://atomgit.com/openeuler/openstack/blob/master/tools/oos/README.md) 使用。
 
 ### 生成个人 Gitee 帐户的 pat(personal access token)
 
@@ -97,7 +97,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs
 
 注2：处理错误时，可以参考仓库中现有的 spec 文件；当前 spec 除了 changelog 部分，其余为 oos 工具重新生成，前人遇到的错误，此处仍可能遇到，可参考前人操作结果问题。
 
-注3：oos 命令还支持批量处理，可以参考 oos 的 [README](https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md) 自行尝试。
+注3：oos 命令还支持批量处理，可以参考 oos 的 [README](https://atomgit.com/openeuler/openstack/blob/master/tools/oos/README.md) 自行尝试。
 
 ### PR 门禁检查
 

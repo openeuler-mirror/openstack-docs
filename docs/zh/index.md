@@ -36,6 +36,9 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 | openEuler 22.03 LTS SP4 |        |       |   ○   |        |          |    ○    |      |      |          |
 | openEuler 22.09         |        |       |       |        |          |         |      |   ●  |     ●    |
 | openEuler 24.03 LTS     |        |       |       |        |          |    ●    |      |      |     ●    |
+| openEuler 24.03 LTS SP1 |        |       |       |        |          |    ●    |      |      |     ●    |
+| openEuler 24.03 LTS SP2 |        |       |       |        |          |    ●    |      |      |     ●    |
+| openEuler 24.03 LTS SP4 |        |       |       |        |          |    ●    |      |      |     ●    |
 
 |            | Queens | Rocky | Train | Victoria | Wallaby | Yoga | Antelope |
 |:---------: |:------:|:-----:|:-----:|:--------:|:-------:|:----:|:--------:|
@@ -52,7 +55,7 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 |   Kolla    |    ●   |   ●   |   ●   |          |    ●    |   ●  |    ●     |
 |   Rally    |    ▲   |   ▲   |       |          |         |      |          |
 |   Swift    |        |       |   ●   |          |    ●    |   ●  |    ●     |
-|    Heat    |        |       |   ●   |          |    ▲   |   ●  |     ●     |
+|    Heat    |        |       |   ●   |          |    ▲    |   ●  |     ●    |
 | Ceilometer |        |       |   ●   |          |    ▲    |   ●  |    ●     |
 |    Aodh    |        |       |   ●   |          |    ▲    |   ●  |    ●     |
 |   Cyborg   |        |       |   ●   |          |    ▲    |   ●  |    ●     |
@@ -124,21 +127,21 @@ SIG maintainer每半年也会例行审视当前maintainer列表，如果发现�
 
 |姓名|Gitee ID|邮箱|公司|
 |---|---|---|---|
-|陈硕|[joec88](https://gitee.com/joec88)|<joseph.chn1988@gmail.com>|中国联通|
-|李昆山|[liksh](https://gitee.com/liksh)|<li_kunshan@163.com>|中国联通|
-|黄填华|[huangtianhua](https://gitee.com/huangtianhua)|<huangtianhua223@gmail.com>|华为|
-|王玺源|[xiyuanwang](https://gitee.com/xiyuanwang)|<wangxiyuan1007@gmail.com>|华为|
-|张帆|[zh-f](https://gitee.com/zh-f)|<zh.f@outlook.com>|中国电信|
-|张迎|[zhangy1317](https://gitee.com/zhangy1317)|<zhangy1317@foxmail.com>|中国联通|
-|韩光宇|[han-guangyu](https://gitee.com/han-guangyu)|<hanguangyu@uniontech.com>|统信软件|
-|王东兴|[desert-sailor](https://gitee.com/desert-sailor)|<dongxing.wang_a@thundersoft.com>|创达奥思维|
-|郑挺|[tzing_t](https://gitee.com/tzing_t)|<zhengting13@huawei.com>|华为|
+|陈硕|[`joec88`](https://atomgit.com/joec88)|<joseph.chn1988@gmail.com>|中国联通|
+|李昆山|[`liksh`](https://atomgit.com/liksh)|<li_kunshan@163.com>|中国联通|
+|黄填华|[`huangtianhua`](https://atomgit.com/huangtianhua)|<huangtianhua223@gmail.com>|华为|
+|王玺源|[`xiyuanwang`](https://atomgit.com/xiyuanwang)|<wangxiyuan1007@gmail.com>|华为|
+|张帆|[`zh-f`](https://atomgit.com/zh-f)|<zh.f@outlook.com>|中国电信|
+|张迎|[`zhangy1317`](https://atomgit.com/zhangy1317)|<zhangy1317@foxmail.com>|中国联通|
+|韩光宇|[`han-guangyu`](https://atomgit.com/han-guangyu)|<hanguangyu@uniontech.com>|统信软件|
+|王东兴|[`desert-sailor`](https://atomgit.com/desert-sailor)|<dongxing.wang_a@thundersoft.com>|创达奥思维|
+|郑挺|[`tzing_t`](https://atomgit.com/tzing_t)|<zhengting13@huawei.com>|华为|
 
 ## 如何贡献
 
 OpenStack SIG秉承OpenStack社区4个Open原则（Open source、Open Design、Open Development、Open Community），欢迎开发者、用户、厂商以各种开源方式参与SIG贡献，包括但不限于：
 
-1. [提交Issue](https://gitee.com/openeuler/openstack/issues/new)
+1. [提交Issue](https://atomgit.com/openeuler/openstack/issues/new)
     如果您在使用OpenStack时遇到了任何问题，可以向SIG提交ISSUE，包括不限于使用疑问、软件包BUG、特性需求等等。
 2. 参与技术讨论
    通过邮件列表、微信群、在线例会等方式，与SIG成员实时讨论OpenStack技术。
@@ -154,19 +157,18 @@ OpenStack SIG秉承OpenStack社区4个Open原则（Open source、Open Design、O
 
 ## 项目清单
 
-SIG包含的全部项目：<https://gitee.com/openeuler/openstack/blob/master/tools/oos/etc/openeuler_sig_repo.yaml>
+SIG包含的全部项目：<https://atomgit.com/openeuler/openstack/blob/master/tools/oos/etc/openeuler_sig_repo.yaml>
 
 OpenStack包含项目众多，为了方便管理，设置了统一入口项目，用户、开发者对OpenStack SIG以及各OpenStack子项目有任何问题，可以在该项目中提交Issue。
 
-- <https://gitee.com/openeuler/openstack>
+- <https://atomgit.com/openeuler/openstack>
 
 SIG同时联合各大厂商、开发者，创建了一系列自研项目：
 
-- <https://gitee.com/openeuler/openstack-kolla-ansible-plugin>
-- <https://gitee.com/openeuler/openstack-kolla-plugin>
-- <https://gitee.com/openeuler/openstack-plugin>
-- <https://gitee.com/openeuler/hostha>
-- <https://gitee.com/openeuler/opensd>
+- <https://atomgit.com/openeuler/openstack-kolla-ansible-plugin>
+- <https://atomgit.com/openeuler/openstack-kolla-plugin>
+- <https://atomgit.com/openeuler/hostha>
+- <https://atomgit.com/openeuler/opensd>
 
 ## 交流群
 
