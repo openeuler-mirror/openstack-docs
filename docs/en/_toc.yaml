@@ -1,0 +1,34 @@
+label: OpenStack User Manual
+isManual: true
+description: An open source cloud computing management platform project
+sections:
+  - label: OpenStack SIG
+    href: ./index.md
+  - label: Contribution Guide
+    sections:
+      - label: RPM Development Process
+        href: ./contribute/rpm_packaging_reference.md
+  - label: Installation Guide
+    sections:
+      - label: devstack
+        href: ./install/devstack.md
+      - label: antelope
+        href: ./install/antelope.md
+      - label: wallaby
+        href: ./install/wallaby.md
+  - label: Self-developed Features
+    sections:
+      - label: VM High/Low Priority
+        href: ./spec/priority_vm.md
+      - label: Distributed Traffic
+        href: ./spec/distributed_traffic.md
+      - label: openkite
+        href: ./spec/openkite.md
+      - label: OpenStack Tools
+        href: ./spec/openstack_sig_tool.md
+      - label: OpenStack Tools Requirements
+        href: ./spec/openstack_sig_tool_requirement.md
+  - label: Operations and Management Guide
+    sections:
+      - label: Security Guide
+        href: ./security/security_guide.md
