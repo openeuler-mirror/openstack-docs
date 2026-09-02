@@ -2,7 +2,7 @@
 
 [TOC]
 
-本文档是 openEuler OpenStack SIG 编写的基于 |openEuler 24.03 LTS SP4 的 OpenStack 部署指南，内容由 SIG 贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请[联系](https://www.openeuler.openatom.cn/zh/sig/sig-openstack)SIG维护人员，或者直接[提交issue](https://atomgit.com//openeuler/openstack/issues)
+本文档是 openEuler OpenStack SIG 编写的基于 |openEuler 24.03 LTS SP4 的 OpenStack 部署指南，内容由 SIG 贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请[联系](https://www.openeuler.openatom.cn/zh/sig/sig-openstack)SIG维护人员，或者直接[提交issue](https://atomgit.com/openeuler/openstack/issues)
 
 **约定**
 
@@ -973,7 +973,7 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
     - 编辑`/etc/nova/nova.conf`配置文件，完成如下操作：
 
-        - 在`[default]`部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用controller节点管理IP配置my_ip，显式定义log_dir：
+        - 在`[default]`部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用controller节点管理IP配置my_ip，显式定义log_dir和state_path：
 
         ```ini
         [DEFAULT]
