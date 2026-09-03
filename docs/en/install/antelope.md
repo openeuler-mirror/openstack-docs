@@ -2,7 +2,7 @@
 
 [TOC]
 
-This document is the OpenStack deployment guide based on openEuler 24.03 LTS SP4, written by the openEuler OpenStack SIG. The content is contributed by SIG members. If you have any questions or find any issues during reading, please [contact](https://www.openeuler.openatom.cn/zh/sig/sig-openstack) the SIG maintainers, or directly [submit an issue](https://atomgit.com//openeuler/openstack/issues)
+This document is the OpenStack deployment guide based on openEuler 24.03 LTS SP4, written by the openEuler OpenStack SIG. The content is contributed by SIG members. If you have any questions or find any issues during reading, please [contact](https://www.openeuler.openatom.cn/zh/sig/sig-openstack) the SIG maintainers, or directly [submit an issue](https://atomgit.com/openeuler/openstack/issues)
 
 **Conventions**
 
@@ -973,7 +973,7 @@ Execute the following operations on the controller node.
 
     - Edit the `/etc/nova/nova.conf` configuration file and complete the following:
 
-        - In the `[default]` section, enable the compute and metadata APIs, configure the RabbitMQ message queue connection, use the controller node management IP to configure my_ip, and explicitly define log_dir:
+        - In the `[default]` section, enable the compute and metadata APIs, configure the RabbitMQ message queue connection, use the controller node management IP to configure my_ip, and explicitly define log_dir and state_path:
 
         ```ini
         [DEFAULT]
