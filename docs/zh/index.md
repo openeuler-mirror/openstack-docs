@@ -21,54 +21,67 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 ○ - 规划中/开发中
 ▲ - 部分openEuler版本支持
 
-|                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga | Antelope |
-|:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|:--------:|
-| openEuler 20.03 LTS SP1 |        |       |   ●   |        |          |         |      |      |          |
-| openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |          |
-| openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |          |
-| openEuler 20.03 LTS SP4 |        |       |   ●   |        |          |         |      |      |          |
-| openEuler 21.03         |        |       |       |        |     ●    |         |      |      |          |
-| openEuler 21.09         |        |       |       |        |          |    ●    |      |      |          |
-| openEuler 22.03 LTS     |        |       |   ●   |        |          |    ●    |      |      |          |
-| openEuler 22.03 LTS SP1 |        |       |   ●   |        |          |    ●    |      |      |          |
-| openEuler 22.03 LTS SP2 |        |       |   ●   |        |          |    ●    |      |      |          |
-| openEuler 22.03 LTS SP3 |        |       |   ●   |        |          |    ●    |      |      |          |
-| openEuler 22.03 LTS SP4 |        |       |   ○   |        |          |    ○    |      |      |          |
-| openEuler 22.09         |        |       |       |        |          |         |      |   ●  |     ●    |
-| openEuler 24.03 LTS     |        |       |       |        |          |    ●    |      |      |     ●    |
-| openEuler 24.03 LTS SP1 |        |       |       |        |          |    ●    |      |      |     ●    |
-| openEuler 24.03 LTS SP2 |        |       |       |        |          |    ●    |      |      |     ●    |
-| openEuler 24.03 LTS SP4 |        |       |       |        |          |    ●    |      |      |     ●    |
+|                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga | Antelope | Gazpacho |
+|:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|:--------:|:--------:|
+| openEuler 20.03 LTS SP1 |        |       |   ●   |        |          |         |      |      |          |          |
+| openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |          |          |
+| openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |          |          |
+| openEuler 20.03 LTS SP4 |        |       |   ●   |        |          |         |      |      |          |          |
+| openEuler 21.03         |        |       |       |        |     ●    |         |      |      |          |          |
+| openEuler 21.09         |        |       |       |        |          |    ●    |      |      |          |          |
+| openEuler 22.03 LTS     |        |       |   ●   |        |          |    ●    |      |      |          |          |
+| openEuler 22.03 LTS SP1 |        |       |   ●   |        |          |    ●    |      |      |          |          |
+| openEuler 22.03 LTS SP2 |        |       |   ●   |        |          |    ●    |      |      |          |          |
+| openEuler 22.03 LTS SP3 |        |       |   ●   |        |          |    ●    |      |      |          |          |
+| openEuler 22.03 LTS SP4 |        |       |   ●   |        |          |    ●    |      |      |          |          |
+| openEuler 22.09         |        |       |       |        |          |         |      |   ●  |     ●    |          |
+| openEuler 24.03 LTS     |        |       |       |        |          |    ●    |      |      |     ●    |          |
+| openEuler 24.03 LTS SP1 |        |       |       |        |          |    ●    |      |      |     ●    |          |
+| openEuler 25.03         |        |       |       |        |          |         |      |      |     ●    |          |
+| openEuler 24.03 LTS SP2 |        |       |       |        |          |    ●    |      |      |     ●    |          |
+| openEuler 24.03 LTS SP4 |        |       |       |        |          |    ●    |      |      |     ●    |     ●    |
 
-|            | Queens | Rocky | Train | Victoria | Wallaby | Yoga | Antelope |
-|:---------: |:------:|:-----:|:-----:|:--------:|:-------:|:----:|:--------:|
-|  Keystone  |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |
-|   Glance   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |
-|    Nova    |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |
-|   Cinder   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |
-|  Neutron   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |
-|  Tempest   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |
-|  Horizon   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |
-|   Ironic   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |
-| Placement  |        |       |   ●   |     ●    |    ●    |   ●  |    ●     |
-|   Trove    |    ●   |   ●   |   ●   |          |    ●    |   ●  |    ●     |
-|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |   ●  |    ●     |
-|   Rally    |    ▲   |   ▲   |       |          |         |      |          |
-|   Swift    |        |       |   ●   |          |    ●    |   ●  |    ●     |
-|    Heat    |        |       |   ●   |          |    ▲    |   ●  |     ●    |
-| Ceilometer |        |       |   ●   |          |    ▲    |   ●  |    ●     |
-|    Aodh    |        |       |   ●   |          |    ▲    |   ●  |    ●     |
-|   Cyborg   |        |       |   ●   |          |    ▲    |   ●  |    ●     |
-|   Gnocchi  |        |       |   ●   |          |    ●    |   ●  |    ●     |
-| OpenStack-helm |    |       |       |          |         |   ●  |    ●     |
-|  Barbican  |        |       |       |          |    ▲    |      |    ●     |
-|  Octavia   |        |       |       |          |    ▲    |      |    ●     |
-|  Designate |        |       |       |          |    ▲    |      |    ●     |
-|  Manila    |        |       |       |          |    ▲    |      |    ●     |
-|  Masakari  |        |       |       |          |    ▲    |      |    ●     |
-|  Mistral   |        |       |       |          |    ▲    |      |    ●     |
-|  Senlin    |        |       |       |          |    ▲    |      |    ●     |
-|  Zaqar     |        |       |       |          |    ▲    |      |    ●     |
+|            | Queens | Rocky | Train | Victoria | Wallaby | Yoga | Antelope | Gazpacho |
+|:---------: |:------:|:-----:|:-----:|:--------:|:-------:|:----:|:--------:|:--------:|
+|  Keystone  |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+|   Glance   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+|    Nova    |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+|   Cinder   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+|  Neutron   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+|  Tempest   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+|  Horizon   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+|   Ironic   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+| Placement  |        |       |   ●   |     ●    |    ●    |   ●  |    ●     |    ●     |
+|   Trove    |    ●   |   ●   |   ●   |          |    ●    |   ●  |    ●     |    ●     |
+|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |   ●  |    ●     |    ●     |
+|   Rally    |    ▲   |   ▲   |       |          |         |      |          |          |
+|   Swift    |        |       |   ●   |          |    ●    |   ●  |    ●     |    ●     |
+|    Heat    |        |       |   ●   |          |    ▲    |   ●  |     ●    |    ●     |
+| Ceilometer |        |       |   ●   |          |    ▲    |   ●  |    ●     |    ●     |
+|    Aodh    |        |       |   ●   |          |    ▲    |   ●  |    ●     |    ●     |
+|   Cyborg   |        |       |   ●   |          |    ▲    |   ●  |    ●     |    ●     |
+|   Gnocchi  |        |       |   ●   |          |    ●    |   ●  |    ●     |    ●     |
+|  Barbican  |        |       |       |          |    ▲    |      |    ●     |    ●     |
+|  Octavia   |        |       |       |          |    ▲    |      |    ●     |    ●     |
+|  Designate |        |       |       |          |    ▲    |      |    ●     |    ●     |
+|  Manila    |        |       |       |          |    ▲    |      |    ●     |    ●     |
+|  Masakari  |        |       |       |          |    ▲    |      |    ●     |    ●     |
+|  Mistral   |        |       |       |          |    ▲    |      |    ●     |    ●     |
+|  Senlin    |        |       |       |          |    ▲    |      |    ●     |          |
+|  Zaqar     |        |       |       |          |    ▲    |      |    ●     |    ●     |
+|  Adjutant  |        |       |       |          |         |      |          |    ●     |
+|   Aetos    |        |       |       |          |         |      |          |    ●     |
+|   Blazar   |        |       |       |          |         |      |          |    ●     |
+| Cloudkitty |        |       |       |          |    ●    |      |    ●     |    ●     |
+|  Freezer   |        |       |       |          |         |      |          |    ●     |
+| Freezer-api |        |       |       |          |         |      |          |    ●     |
+|   Magnum   |        |       |       |          |         |      |          |    ●     |
+| Skyline-apiserver |        |       |       |          |         |      |    ▲     |    ●     |
+| Skyline-console |        |       |       |          |         |      |    ▲     |    ●     |
+|  Storlets  |        |       |       |          |         |      |          |    ●     |
+|   Tacker   |        |       |       |          |         |      |          |    ●     |
+|  Watcher   |        |       |       |          |         |      |          |    ●     |
+|    Zun     |        |       |       |          |         |      |          |    ●     |
 
 Note:
 
