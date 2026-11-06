@@ -1,4 +1,4 @@
-label: OpenStack 用户手册
+label: OpenStack 用户指南
 isManual: true
 description: 一个开源的云计算管理平台项目
 sections:
@@ -14,6 +14,8 @@ sections:
         href: ./install/devstack.md
       - label: antelope
         href: ./install/antelope.md
+      - label: gazpacho
+        href: ./install/gazpacho.md
       - label: wallaby
         href: ./install/wallaby.md
   - label: 自研特性

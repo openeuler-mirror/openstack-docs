@@ -1,4 +1,4 @@
-label: OpenStack User Manual
+label: OpenStack User Guide
 isManual: true
 description: An open source cloud computing management platform project
 sections:
@@ -14,6 +14,8 @@ sections:
         href: ./install/devstack.md
       - label: antelope
         href: ./install/antelope.md
+      - label: gazpacho
+        href: ./install/gazpacho.md
       - label: wallaby
         href: ./install/wallaby.md
   - label: Self-developed Features
