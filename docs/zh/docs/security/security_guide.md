@@ -1322,20 +1322,20 @@ server {
 
 ```shell
 <VirtualHost <ip address>:80>
-  ServerName <site FQDN>
-  RedirectPermanent / https://<site FQDN>/
+  ServerName SITE_FQDN
+  RedirectPermanent / https://SITE_FQDN/
 </VirtualHost>
 <VirtualHost <ip address>:443>
-  ServerName <site FQDN>
+  ServerName SITE_FQDN
   SSLEngine On
   SSLProtocol +TLSv1 +TLSv1.1 +TLSv1.2
   SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM
-  SSLCertificateFile    /path/<site FQDN>.crt
-  SSLCACertificateFile  /path/<site FQDN>.crt
-  SSLCertificateKeyFile /path/<site FQDN>.key
-  WSGIScriptAlias / <WSGI script location>
-  WSGIDaemonProcess horizon user=<user> group=<group> processes=3 threads=10
-  Alias /static <static files location>
+  SSLCertificateFile    /path/SITE_FQDN.crt
+  SSLCACertificateFile  /path/SITE_FQDN.crt
+  SSLCertificateKeyFile /path/SITE_FQDN.key
+  WSGIScriptAlias / WSGI_SCRIPT_LOCATION
+  WSGIDaemonProcess horizon user=USER group=GROUP processes=3 threads=10
+  Alias /static STATIC_FILES_LOCATION
   <Directory <WSGI dir>>
     # For http server 2.2 and earlier:
     Order allow,deny
@@ -1351,16 +1351,16 @@ Apache 中的计算 API SSL 端点，必须与简短的 WSGI 脚本配对。
 
 ```shell
 <VirtualHost <ip address>:8447>
-  ServerName <site FQDN>
+  ServerName SITE_FQDN
   SSLEngine On
   SSLProtocol +TLSv1 +TLSv1.1 +TLSv1.2
   SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM
-  SSLCertificateFile    /path/<site FQDN>.crt
-  SSLCACertificateFile  /path/<site FQDN>.crt
-  SSLCertificateKeyFile /path/<site FQDN>.key
+  SSLCertificateFile    /path/SITE_FQDN.crt
+  SSLCACertificateFile  /path/SITE_FQDN.crt
+  SSLCertificateKeyFile /path/SITE_FQDN.key
   SSLSessionTickets Off
-  WSGIScriptAlias / <WSGI script location>
-  WSGIDaemonProcess osapi user=<user> group=<group> processes=3 threads=10
+  WSGIScriptAlias / WSGI_SCRIPT_LOCATION
+  WSGIDaemonProcess osapi user=USER group=GROUP processes=3 threads=10
   <Directory <WSGI dir>>
     # For http server 2.2 and earlier:
     Order allow,deny
@@ -1862,7 +1862,7 @@ OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机�
 **建议**
 
 ```shell
-禁用 `admin_token` 意味着它的值为 `<none>` 。
+禁用 `admin_token` 意味着它的值为 `NONE` 。
 ```
 
 #### check-identity-07:/etc/keystone/keystone.conf中的不安全_调试为假
@@ -2447,7 +2447,7 @@ XenServer 5.6 包含一个名为透明页面共享 （TPS） 的内存过量使�
 
 #### 参考书目
 
-- Sunar、Eisenbarth、Inci、Gorka Irazoqui Apecechea。对 Xen 和 VMware 进行细粒度跨虚拟机攻击是可能的！2014。 <https://eprint.iacr.org/2014/248.pfd>
+- Sunar、Eisenbarth、Inci、Gorka Irazoqui Apecechea。对 Xen 和 VMware 进行细粒度跨虚拟机攻击是可能的！2014。 <https://eprint.iacr.org/2014/248.pdf>
 - Artho、Yagi、Iijima、Kuniyasu Suzaki。内存重复数据删除对客户机操作系统的威胁。2011 年。<https://staff.aist.go.jp/c.artho/papers/EuroSec2011-suzaki.pdf>
 - KVM：基于内核的虚拟机。内核相同页合并。2010。<http://www.linux-kvm.org/page/KSM>
 - Xen 项目，Xen 安全模块：XSM-FLASK。2014。 <http://wiki.xen.org/wiki/Xen_Security_Modules_:_XSM-FLASK>
@@ -4343,7 +4343,7 @@ rsync 协议用于在存储服务节点之间复制数据以实现高可用性�
 
 ##### HTTP 监听端口
 
-如前所述，您应该将 Web 服务配置为非 root（无 UID 0）用户 `swift` 。需要使用大于 1024 的端口才能轻松完成此操作，并避免以 root 身份运行 Web 容器的任何部分。通常，使用 HTTP REST  API 并执行身份验证的客户端会自动从身份验证响应中检索所需的完整 REST API URL。OpenStack 的 REST API  允许客户端对一个 URL 进行身份验证，然后被告知对实际服务使用完全不同的 URL。例如，客户端向  <https://identity.cloud.example.org:55443/v1/auth> 进行身份验证，并获取其身份验证密钥和存储  URL（代理节点或负载均衡器的 URL）<https://swift.cloud.example.org:44443/v1/AUTH_8980>  响应。
+如前所述，您应该将 Web 服务配置为非 root（无 UID 0）用户 `swift` 。需要使用大于 1024 的端口才能轻松完成此操作，并避免以 root 身份运行 Web 容器的任何部分。通常，使用 HTTP REST  API 并执行身份验证的客户端会自动从身份验证响应中检索所需的完整 REST API URL。OpenStack 的 REST API  允许客户端对一个 URL 进行身份验证，然后被告知对实际服务使用完全不同的 URL。例如，客户端向  `https://identity.cloud.example.org:55443/v1/auth` 进行身份验证，并获取其身份验证密钥和存储  URL（代理节点或负载均衡器的 URL）`https://swift.cloud.example.org:44443/v1/AUTH_8980`  响应。
 
 将 Web 服务器配置为以非 root 用户身份启动和运行的方法因 Web 服务器和操作系统而异。
 
@@ -4691,7 +4691,7 @@ OpenStack 不支持消息级别的安全性，例如消息签名。因此，您�
 [
   {rabbit, [
      {tcp_listeners, [] },
-     {ssl_listeners, [{"<IP address or hostname of management network interface>", 5671}] },
+     {ssl_listeners, [{"MANAGEMENT_INTERFACE", 5671}] },
      {ssl_options, [{cacertfile,"/etc/ssl/cacert.pem"},
                     {certfile,"/etc/ssl/rabbit-server-cert.pem"},
                     {keyfile,"/etc/ssl/rabbit-server-key.pem"},
@@ -4776,7 +4776,7 @@ kombu_ssl_ca_certs = /etc/ssl/cacert.pem
 [DEFAULT]
 rpc_backend = nova.openstack.common.rpc.impl_qpid
 qpid_protocol = ssl
-qpid_hostname = <IP or hostname of management network interface of messaging server>
+qpid_hostname = MESSAGING_INTERFACE
 qpid_port = 5671
 qpid_username = compute01
 qpid_password = QPID_PASS
@@ -4785,7 +4785,7 @@ qpid_password = QPID_PASS
 （可选）如果将 SASL 与 Qpid 一起使用，请通过添加以下内容来指定正在使用的 SASL 机制：
 
 ```shell
-qpid_sasl_mechanisms = <space separated list of SASL mechanisms to use for auth>
+qpid_sasl_mechanisms = SASL_MECHANISMS
 ```
 
 #### 消息队列进程隔离和策略
@@ -5235,7 +5235,7 @@ use_local = true
 ```shell
 [mysqld]
 ...
-bind-address <ip address or hostname of management network interface>
+bind-address MANAGEMENT_INTERFACE
 ```
 
 ##### 限制 PostgreSQL 的监听地址 
@@ -5243,7 +5243,7 @@ bind-address <ip address or hostname of management network interface>
 在 `postgresql.conf` ：
 
 ```shell
-listen_addresses = <ip address or hostname of management network interface>
+listen_addresses = MANAGEMENT_INTERFACE
 ```
 
 #### 数据库传输
@@ -5621,7 +5621,7 @@ RHEL 6 CCE-26976-1 示例，这将有助于在 OZ 中实施 NIST 800-53 第 AC-1
   <package name='cloud-init'/>
 </packages>
 <commands>
-  <command name='update'>
+  <command>
   yum update
   yum clean all
   rm -rf /var/log/yum
@@ -6326,7 +6326,7 @@ OpenStack 社区重视您的设置和测试工作，并希望得到您的反馈�
 
 #### OpenStack IRC 频道 
 
-OpenStack 社区位于 OFTC 网络上的 #openstack IRC 频道中。您可以在这里提问，获取即时反馈，解决紧急问题。要安装 IRC  客户端或使用基于浏览器的客户端，请访问 <https://webchat.oftc.net/。您还可以使用Colloquy> （Mac OS  X）、mIRC （Windows） 或 XChat （Linux）。当您在 IRC 频道中并且想要共享代码或命令输出时，通常接受的方法是使用  Paste Bin。OpenStack 项目有一个Paste网站。只需将较长的文本或日志粘贴到 Web  表单中，即可获得一个URL，可以将其粘贴到频道中。OpenStack IRC 频道处于 `#openstack` . `irc.oftc.net` 您可以在 wiki 的 IRC 页面上找到所有 OpenStack IRC 频道的列表。
+OpenStack 社区位于 OFTC 网络上的 #openstack IRC 频道中。您可以在这里提问，获取即时反馈，解决紧急问题。要安装 IRC  客户端或使用基于浏览器的客户端，请访问 `https://webchat.oftc.net/` （Mac OS  X）、mIRC （Windows） 或 XChat （Linux）。当您在 IRC 频道中并且想要共享代码或命令输出时，通常接受的方法是使用  Paste Bin。OpenStack 项目有一个Paste网站。只需将较长的文本或日志粘贴到 Web  表单中，即可获得一个URL，可以将其粘贴到频道中。OpenStack IRC 频道处于 `#openstack` . `irc.oftc.net` 您可以在 wiki 的 IRC 页面上找到所有 OpenStack IRC 频道的列表。
 
 #### OpenStack 邮件列表
 
@@ -6338,7 +6338,7 @@ OpenStack 社区位于 OFTC 网络上的 #openstack IRC 频道中。您可以在
 
 - **CentOS, Fedora, and Red Hat Enterprise Linux:** <https://www.rdoproject.org/>
 - **openSUSE and SUSE Linux Enterprise Server:** <https://en.opensuse.org/Portal:OpenStack>
-- **Ubuntu:** <https://wiki.ubuntu.com/OpenStack/CloudArchive>
+- **Ubuntu:** <https://ubuntu.com/openstack>
 
 ### 词汇表
 
@@ -7222,7 +7222,7 @@ dnsmasq
 
 域名系统（DNS）
 
-用于确定 Internet 域名到地址和地址到名称解析的系统。DNS 通过将 IP 地址转换为更易于记忆的地址来帮助浏览 Internet。例如，将  111.111.111.1 转换为 <www.yahoo.com。所有域及其组件（如邮件服务器）都利用> DNS  解析到适当的位置。DNS服务器通常设置在主从关系中，以便主服务器故障调用从服务器。还可以对 DNS 服务器进行群集或复制，以便对一个 DNS  服务器所做的更改自动传播到其他活动服务器。在计算中，支持将 DNS 条目与浮动 IP 地址、节点或单元相关联，以便主机名在重新启动时保持一致。
+用于确定 Internet 域名到地址和地址到名称解析的系统。DNS 通过将 IP 地址转换为更易于记忆的地址来帮助浏览 Internet。例如，将  111.111.111.1 转换为 `www.yahoo.com` DNS  解析到适当的位置。DNS服务器通常设置在主从关系中，以便主服务器故障调用从服务器。还可以对 DNS 服务器进行群集或复制，以便对一个 DNS  服务器所做的更改自动传播到其他活动服务器。在计算中，支持将 DNS 条目与浮动 IP 地址、节点或单元相关联，以便主机名在重新启动时保持一致。
 
 下载
 
