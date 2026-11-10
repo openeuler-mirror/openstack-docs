@@ -161,4 +161,4 @@ SIG has also jointly created a series of self-developed projects with major vend
 ## Communication Group
 
 Add the assistant and reply "join group" to enter the openEuler sig-OpenStack communication group.
-![assistant](docs/img/install/wechat_group_assistant.jpg)
+![assistant](./img/wechat_group_assistant.jpg)
