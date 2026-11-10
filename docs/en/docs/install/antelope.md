@@ -56,9 +56,9 @@ If your environment uses different IPs, please modify the configuration files ac
 
 The three-node service topology for this document is shown in the figures below (only including core services: Keystone, Glance, Nova, Cinder, Neutron. For other services, please refer to the specific deployment chapters):
 
-![topology1](../img/install/topology1.PNG)
-![topology2](../img/install/topology2.PNG)
-![topology3](../img/install/topology3.PNG)
+![topology1](./img/topology1.PNG)
+![topology2](./img/topology2.PNG)
+![topology3](./img/topology3.PNG)
 
 Before formal deployment, the following configuration and checks need to be performed on each node:
 
@@ -2463,7 +2463,7 @@ Execute the following operations on the controller node.
 
     Generated error configuration file:
 
-    ![ironic-err](../img/install/ironic-err.png)
+    ![ironic-err](./img/ironic-err.png)
 
     As shown above, the commands to find vmlinux and ramdisk images in arm architecture are linux and initrd respectively. The red-highlighted commands in the figure above are for x86 architecture UEFI PXE boot.
 
