@@ -56,9 +56,9 @@ storage：   192.168.0.4
 
 本文档的三节点服务拓扑如下图所示(只包含Keystone、Glance、Nova、Cinder、Neutron这几个核心服务，其他服务请参考具体部署章节)：
 
-![topology1](../img/install/topology1.PNG)
-![topology2](../img/install/topology2.PNG)
-![topology3](../img/install/topology3.PNG)
+![topology1](./img/topology1.PNG)
+![topology2](./img/topology2.PNG)
+![topology3](./img/topology3.PNG)
 
 在正式部署之前，需要对每个节点做如下配置和检查：
 
@@ -2462,7 +2462,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
     生成的错误配置文件：
 
-    ![ironic-err](../img/install/ironic-err.png)
+    ![ironic-err](./img/ironic-err.png)
 
     如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
 

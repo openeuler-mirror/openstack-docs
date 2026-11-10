@@ -381,7 +381,7 @@ In this document, we treat community and hybrid clouds similarly, explicitly add
 
 OpenStack uses a modular architecture, providing a set of core services to facilitate scalability and elasticity as core design principles. This chapter briefly reviews OpenStack components, their use cases, and security considerations.
 
-[![../img/security/architecture_diagram.png](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)
+[![./img/security/architecture_diagram.png](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)
 
 ### Compute
 
