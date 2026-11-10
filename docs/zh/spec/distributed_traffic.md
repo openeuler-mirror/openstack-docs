@@ -19,11 +19,11 @@ OpenStack为用户提供计算和网络服务。用户创建虚拟机并连接Ro
 
 在一个基本的OpenStack环境中虚拟机实例的流量走向如下所示。
 
-![单个虚拟机网络流量](../img/spec/router_1.png)
+![单个虚拟机网络流量](./img/router_1.png)
 
 在用户创建完多个实例后，虚拟机实例可能会均匀分布在各个计算节点，虚拟机的流量走向可能如下图所示。
 
-![多个虚拟机网络流量](../img/spec/router_2.png)
+![多个虚拟机网络流量](./img/router_2.png)
 
 可以看到，不论虚拟机的东西流量还是南北流量都会经过Network-1节点，这无疑加大了网络节点的负载，同时当网络节点发生故障时不能很好的进行故障恢复。
 那么是否可以将同一子网绑定多个Router，在OpenStack中同一子网可以绑定多个Router，但是子网在绑定Router时默认会将子网的网关地址绑定到Router上，一个子网只有一个网关地址，同时这个网关地址又会在DHCP服务中用到，用于给虚拟机实例提供下一跳的网关地址，于是乎即使将子网绑定到多个Router上，虚拟机内部下一跳的网关地址还会是子网的网关地址，而且Router选择的网络节点用户是不可控的，难免会出现虽然子网绑定了两个Router，但是这两个Router在同一个网络节点上的尴尬场面。
@@ -82,7 +82,7 @@ master_agent用于指定Master角色的网络节点，slave_agents用于指定Sl
 
 然后要修改Router的创建逻辑，需要为Router新增一个调度方法。Neutron中router_scheduler_driver默认是LeastRoutersScheduler（最少Router个数的网络节点），继承该类新增调度方法，可以根据Router的configurations字段选择指定的网络节点。
 
-![L3 Scheduler](../img/spec/l3_scheduler.png)
+![L3 Scheduler](./img/l3_scheduler.png)
 
 最后需要修改neutron-l3-agent的Router更新的逻辑代码，由于neutron-l3-agent启动时会初始化一个资源队列用于更新资源状态，同时开启一个守护线程用于读取资源队列，每次网络资源状态有变化（创建、删除或者更新）时，就会添加到该队列中，最后根据资源的类型和状态确定将要执行的动作。
 这里Router创建完后，neutron-l3-agent最后会执行_process_added_router方法，先调用RouterInfo的initialize方法，再调用process方法。
@@ -149,7 +149,7 @@ tag:compute-1-subnet-6a4db541-e563-43ff-891b-aa8c05c988c5,option:router,172.16.0
 
 虚拟机实例的网络流量的流向如下图所示。
 
-![网络流量](../img/spec/router_3.png)
+![网络流量](./img/router_3.png)
 
 可以看到，VM-1访问外部网络经过的是network-1节点，VM-2和VM-3访问外部网络经过的是network-2节点。同时VM-1、VM-2和VM-3又是在同一个子网下，可以互相访问。
 

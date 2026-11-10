@@ -2118,7 +2118,7 @@ Ironic is the bare metal service for OpenStack. If users need to perform bare me
 
         The incorrectly generated configuration file:
 
-        ![ironic-err](../img/install/ironic-err.png)
+        ![ironic-err](./img/ironic-err.png)
 
         As shown above, in the arm architecture, the commands to find vmlinux and ramdisk images are linux and initrd respectively. The commands highlighted in red in the image above are for x86 architecture UEFI PXE boot.
 

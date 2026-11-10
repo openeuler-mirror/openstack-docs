@@ -2118,7 +2118,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
         生成的错误配置文件：
 
-        ![ironic-err](../img/install/ironic-err.png)
+        ![ironic-err](./img/ironic-err.png)
 
         如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
 

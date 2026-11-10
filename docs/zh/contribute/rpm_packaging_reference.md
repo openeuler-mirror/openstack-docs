@@ -57,11 +57,11 @@ pip install openstack-sig-tool==1.0.6
 
 首先进入 Gitee 帐户的“设置”界面。
 
-![设置](../img/contribute/rpm-packaging-reference/setting.png)
+![设置](./img/setting.png)
 
 选择“私人令牌”，然后点击“生成新令牌”。生成后单独保存好自己的私人令牌（pat），Gitee 上无法再次查看，如果丢失只能重新生成。
 
-![私人令牌](../img/contribute/rpm-packaging-reference/pat.png)
+![私人令牌](./img/pat.png)
 
 ### 生成 python-pyrsistent 包的 spec 并提交
 
@@ -103,11 +103,11 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs
 
 此时在自己的 gitee 帐户中可以看到 fork 过来的仓库。进入自己帐号中的仓库，可通过点击如下框起位置，可进入原仓库。
 
-![访问原仓库](../img/contribute/rpm-packaging-reference/redirect_git_repo.png)
+![访问原仓库](./img/redirect_git_repo.png)
  
 原仓库中可以看到自动提交的 pr。Pr 中可以看到 openeuler-ci-bot 的评论：
 
-![门禁结果](../img/contribute/rpm-packaging-reference/gateway.png)
+![门禁结果](./img/gateway.png)
  
 openEuler 在 gitee 上托管的代码，提交 pr 会自动触发门禁。本地构建通过的，也有可能在门禁检查中构建失败。比如上图中此次提交便构建失败，可以点击框起部分，查看对应架构的 build details。
 
@@ -125,7 +125,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs
 
 当一个 pr 通过门禁检查后，需要由软件仓库所属 SIG 的 maintainer 进行 review。为了加速进程，门禁通过后，可以手动 @ 对应的 maintainer，请求帮忙检视。在 pr 提交后，openeuler-ci-bot 会有如下图所示评论，其中被 @ 的人即为当前仓库所属 SIG 的 maintainer。
 
-![maintainer](../img/contribute/rpm-packaging-reference/maintainer.png)
+![maintainer](./img/maintainer.png)
 
 ## 注意事项
 
@@ -138,7 +138,7 @@ oos 自动生成的 spec 文件中，%check 部分默认为 `%{__python3} setup.
 1. 如果是此前已有 spec 文件，可以参考之前的 spec 中 %check 部分如何书写。如果以前写的不是 `%{__python3} setup.py test`，便需要重点注意。
 2. 进入门禁的 build details(参见上文“PR 门禁检查”部分)，查看构建日志的 %check 部分。下图为进入 build details，然后选择“文本方式查看”的日志显示截图。可以看到显示实际运行测试数为0。
 
-![check_log](../img/contribute/rpm-packaging-reference/check_log.png)
+![check_log](./img/check_log.png)
 
 ### 包名不一致问题
 
