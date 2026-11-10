@@ -23,6 +23,18 @@ OpenStack SIG collects OpenStack version requirements through user feedback and 
 
 |                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga | Antelope |
 |:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|:--------:|
+| openEuler 20.03 LTS SP1 |        |       |   ●   |        |          |         |      |      |          |
+| openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |          |
+| openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |          |
+| openEuler 20.03 LTS SP4 |        |       |   ●   |        |          |         |      |      |          |
+| openEuler 21.03         |        |       |       |        |     ●    |         |      |      |          |
+| openEuler 21.09         |        |       |       |        |          |    ●    |      |      |          |
+| openEuler 22.03 LTS     |        |       |   ●   |        |          |    ●    |      |      |          |
+| openEuler 22.03 LTS SP1 |        |       |   ●   |        |          |    ●    |      |      |          |
+| openEuler 22.03 LTS SP2 |        |       |   ●   |        |          |    ●    |      |      |          |
+| openEuler 22.03 LTS SP3 |        |       |   ●   |        |          |    ●    |      |      |          |
+| openEuler 22.03 LTS SP4 |        |       |   ●   |        |          |    ●    |      |      |          |
+| openEuler 22.09         |        |       |       |        |          |         |      |   ●  |     ●    |
 | openEuler 24.03 LTS     |        |       |       |        |          |    ●    |      |      |     ●    |
 
 |            | Queens | Rocky | Train | Victoria | Wallaby | Yoga | Antelope |
