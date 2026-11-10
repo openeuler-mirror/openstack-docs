@@ -20,11 +20,11 @@ After the above operations, the virtual machine instances created by users can a
 
 In a basic OpenStack environment, the traffic flow of virtual machine instances is as follows:
 
-![Single VM network traffic](../img/spec/router_1.png)
+![Single VM network traffic](./img/router_1.png)
 
 After users create multiple instances, virtual machine instances may be evenly distributed across compute nodes, and the traffic flow of virtual machines may be as shown in the figure below:
 
-![Multiple VM network traffic](../img/spec/router_2.png)
+![Multiple VM network traffic](./img/router_2.png)
 
 It can be seen that both east-west and north-south traffic of virtual machines passes through the Network-1 node, which undoubtedly increases the load on network nodes, and cannot perform well in fault recovery when network nodes fail.
 Then, can multiple Routers be bound to the same subnet? In OpenStack, multiple Routers can be bound to the same subnet, but when a subnet is bound to a Router, the subnet's gateway address is bound to the Router by default. A subnet has only one gateway address, and this gateway address is also used in the DHCP service to provide the next-hop gateway address for virtual machine instances. Therefore, even if a subnet is bound to multiple Routers, the next-hop gateway address inside virtual machines will still be the subnet's gateway address, and the Router's network node selection is not controllable by users. It is inevitable that although a subnet is bound to two Routers, both Routers may be on the same network node.
@@ -81,7 +81,7 @@ master_agent is used to specify the network node with the Master role, and slave
 
 Then, the Router creation logic needs to be modified. A new scheduling method needs to be added for Routers. In Neutron, router_scheduler_driver defaults to LeastRoutersScheduler (network node with the fewest Routers). By inheriting this class and adding a new scheduling method, specified network nodes can be selected based on the Router's configurations field.
 
-![L3 Scheduler](../img/spec/l3_scheduler.png)
+![L3 Scheduler](./img/l3_scheduler.png)
 
 Finally, the Router update logic code of neutron-l3-agent needs to be modified. When neutron-l3-agent starts, it initializes a resource queue for updating resource status and starts a daemon thread for reading the resource queue. Whenever there is a change in network resource status (create, delete, or update), it is added to the queue. Finally, actions to be executed are determined based on the resource type and status.
 Here, after the Router is created, neutron-l3-agent will finally execute the _process_added_router method, first calling the initialize method of RouterInfo, then calling the process method.
@@ -142,7 +142,7 @@ Finally, after implementing the above three parts, the steps for users to achiev
 
 The flow of virtual machine instance network traffic is shown in the figure below:
 
-![Network traffic](../img/spec/router_3.png)
+![Network traffic](./img/router_3.png)
 
 It can be seen that VM-1 accessing external networks passes through network-1 node, while VM-2 and VM-3 accessing external networks pass through network-2 node. At the same time, VM-1, VM-2, and VM-3 are under the same subnet and can access each other.
 

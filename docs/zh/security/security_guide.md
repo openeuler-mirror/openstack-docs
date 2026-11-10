@@ -381,7 +381,7 @@ NIST将混合云定义为两个或多个不同的云基础设施（如私有云�
 
 OpenStack 采用模块化架构，提供一组核心服务，以促进可扩展性和弹性作为核心设计原则。本章简要回顾了 OpenStack 组件、它们的用例和安全注意事项。
 
-[![../img/security/architecture_diagram.png](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)
+[![./img/security/architecture_diagram.png](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)](https://docs.openstack.org/security-guide/_images/marketecture-diagram.png)
 
 ### 计算
 
