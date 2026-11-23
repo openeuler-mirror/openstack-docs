@@ -2453,7 +2453,7 @@ XenServer 5.6 包含一个名为透明页面共享 （TPS） 的内存过量使�
 - Xen 项目，Xen 安全模块：XSM-FLASK。2014。 <http://wiki.xen.org/wiki/Xen_Security_Modules_:_XSM-FLASK>
 - SELinux 项目，SVirt。2011。 <http://selinuxproject.org/page/SVirt>
 - Intel.com，采用英特尔可信执行技术 （Intel TXT） 的可信计算池。<http://www.intel.com/txt>
-- AppArmor.net，AppArmor 主页。2011。 <http://wiki.apparmor.net/index.php/Main_Page>
+- AppArmor.net，AppArmor 主页。2011。 <https://apparmor.net/>
 - Kernel.org，CGroups。2004。<https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>
 - 计算机安全资源中心。完整虚拟化技术安全指南。2011。 <http://csrc.nist.gov/publications/nistpubs/800-125/SP800-125-final.pdf>
 - 国家信息保障伙伴关系，国家安全电信和信息系统安全政策。2003。<http://www.niap-ccevs.org/cc-scheme/nstissp_11_revised_factsheet.pdf>
